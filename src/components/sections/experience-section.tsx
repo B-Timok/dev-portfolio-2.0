@@ -115,7 +115,7 @@ export default function ExperienceSection() {
                     <div className="space-y-3 mb-4">
                       <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                         <ArrowRight className="w-4 h-4 text-[#6BA5D7]" />
-                        Key Achievements
+                        Key Role
                       </h4>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, i) => (
