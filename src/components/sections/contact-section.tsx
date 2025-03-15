@@ -34,7 +34,7 @@ export default function ContactSection() {
         <div className="absolute bottom-1/3 left-1/3 w-96 h-96 rounded-full bg-[#6BA5D7]/20 blur-3xl opacity-20" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <motion.div

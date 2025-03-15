@@ -60,7 +60,7 @@ export default function AboutSection() {
         <div className="absolute bottom-1/3 right-1/4 -z-10 h-[500px] w-[500px] bg-[#6BA5D7] blur-[160px] opacity-[0.03]" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Section Header */}
           <motion.div

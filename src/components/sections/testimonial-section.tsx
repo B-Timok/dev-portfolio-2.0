@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
 
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Section Header */}
           <div className="text-center space-y-4">

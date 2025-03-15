@@ -61,7 +61,7 @@ export default function HeroSection() {
         <div className="absolute right-1/4 bottom-1/4 -z-10 h-[500px] w-[500px] bg-[#6BA5D7] blur-[128px] opacity-10" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={containerRef}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden" ref={containerRef}>
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div

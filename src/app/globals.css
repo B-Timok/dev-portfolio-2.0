@@ -80,7 +80,7 @@
     @apply text-xl font-semibold;
   }
   section {
-    @apply py-16 md:py-24;
+    @apply py-16 md:py-24 max-w-[100vw] overflow-hidden;
   }
 }
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, Calendar, ArrowRight } from "lucide-react"
+import { Briefcase, Calendar } from "lucide-react"
 
 export default function ExperienceSection() {
   const experiences = [
@@ -54,7 +54,7 @@ export default function ExperienceSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-4 overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Section Header */}
           <motion.div
@@ -73,7 +73,7 @@ export default function ExperienceSection() {
           {/* Timeline */}
           <div className="relative space-y-12">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-3 bottom-3 w-px bg-gradient-to-b from-[#6BA5D7] via-[#6BA5D7]/50 to-transparent md:left-1/2 md:-translate-x-px" />
+            <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-[2px] bg-[#6BA5D7]/20 md:-translate-x-px" />
 
             {experiences.map((exp, index) => (
               <motion.div
@@ -85,13 +85,13 @@ export default function ExperienceSection() {
                 className="relative grid grid-cols-1 md:grid-cols-2 items-start gap-4"
               >
                 {/* Timeline Node */}
-                <div className="absolute left-8 top-3 w-3 h-3 rounded-full bg-[#6BA5D7] shadow-lg shadow-[#6BA5D7]/20 md:left-1/2 md:-translate-x-[6px]">
+                <div className="absolute left-[4px] md:left-1/2 top-2 w-[8px] h-[8px] rounded-full bg-[#6BA5D7] md:-translate-x-[4px]">
                   <div className="absolute inset-0 rounded-full bg-[#6BA5D7] animate-ping opacity-20" />
                 </div>
 
                 {/* Date Column */}
                 <div
-                  className={`flex items-center gap-4 ${
+                  className={`flex items-center gap-2 pl-8 md:pl-0 ${
                     index % 2 === 0 ? "md:text-right md:justify-end md:pr-8" : "md:order-2 md:pl-8"
                   }`}
                 >
@@ -100,7 +100,7 @@ export default function ExperienceSection() {
                 </div>
 
                 {/* Content Card */}
-                <div className={`${index % 2 === 0 ? "md:order-2 md:pl-8" : "md:pr-8"}`}>
+                <div className={`pl-8 md:pl-0 ${index % 2 === 0 ? "md:order-2 md:pl-8" : "md:pr-8"}`}>
                   <div className="bg-card/30 backdrop-blur-sm rounded-xl p-5 border border-[#6BA5D7]/20 hover:border-[#6BA5D7]/30 transition-all hover:shadow-lg hover:shadow-[#6BA5D7]/5">
                     {/* Header */}
                     <div className="mb-4">
@@ -113,10 +113,7 @@ export default function ExperienceSection() {
 
                     {/* Achievements */}
                     <div className="space-y-3 mb-4">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-[#6BA5D7]" />
-                        Key Role
-                      </h4>
+                      <h4 className="text-sm font-semibold tracking-wider text-[#6BA5D7]">KEY ACHIEVEMENTS</h4>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, i) => (
                           <motion.li

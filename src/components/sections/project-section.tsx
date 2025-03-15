@@ -82,7 +82,7 @@ export default function ProjectsSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-6xl mx-auto space-y-12">
           {/* Section Header */}
           <motion.div
