@@ -138,7 +138,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex items-center gap-4 mt-8"
+              className="flex items-center justify-center sm:justify-start gap-4 mt-8"
             >
               <Link
                 href="https://github.com/B-Timok"
