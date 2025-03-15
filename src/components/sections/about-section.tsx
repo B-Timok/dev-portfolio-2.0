@@ -141,7 +141,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="space-y-3"
               >
-                <h3 className="text-base font-medium text-muted-foreground">When I'm Not Coding</h3>
+                <h3 className="text-base font-medium text-muted-foreground">When I&apos;m Not Coding</h3>
                 <div className="flex flex-wrap gap-2">
                   {interests.map((interest, index) => {
                     const Icon = interest.icon

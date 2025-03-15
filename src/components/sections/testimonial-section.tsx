@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
               <h2 className="text-3xl font-bold tracking-tight">What People Say</h2>
             </div>
             <p className="text-foreground/70 max-w-2xl mx-auto">
-              Feedback from colleagues and clients I've had the pleasure of working with.
+              Feedback from colleagues and clients I&apos;ve had the pleasure of working with.
             </p>
           </div>
 
@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
                   <Quote className="w-10 h-10 text-[#1db954]/20" />
                 </div>
 
-                <p className="text-foreground/80 italic mb-6 flex-1">"{testimonial.quote}"</p>
+                <p className="text-foreground/80 italic mb-6 flex-1">{testimonial.quote}</p>
 
                 <div className="flex items-center gap-4 mt-auto">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden">

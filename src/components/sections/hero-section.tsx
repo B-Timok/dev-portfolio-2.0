@@ -11,7 +11,6 @@ import {
   SiReact,
   SiNodedotjs,
   SiDotnet,
-  SiApollographql,
   SiTailwindcss,
   SiSupabase,
   SiPostgresql,
@@ -90,7 +89,7 @@ export default function HeroSection() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             >
-              Hi, I'm <span className="text-[#6BA5D7]">Brandon</span>
+              Hi, I&apos;m <span className="text-[#6BA5D7]">Brandon</span>
             </motion.h1>
 
             <motion.h2
@@ -108,7 +107,7 @@ export default function HeroSection() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-muted-foreground mb-8 max-w-lg leading-relaxed"
             >
-              I'm a full-stack developer specializing in building elegant, scalable web and mobile applications. With
+              I&apos;m a full-stack developer specializing in building elegant, scalable web and mobile applications. With
               deep expertise in Next.js, TypeScript, C#, and robust backend API development, I deliver user-focused
               solutions emphasizing clean code, thoughtful design, and data-driven development.
             </motion.p>

@@ -13,8 +13,6 @@ import {
   SiMongodb,
   SiDocker,
   SiMysql,
-  SiPrisma,
-  SiPostgresql,
   SiGithub,
   SiPython,
 } from "react-icons/si"

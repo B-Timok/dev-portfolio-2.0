@@ -51,8 +51,8 @@ export default function ContactSection() {
               <h2 className="text-3xl font-bold text-[#6BA5D7]">Get In Touch</h2>
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              I'm currently available for freelance work and full-time positions. If you have a project that needs some
-              creative work, let's talk!
+              I&apos;m currently available for freelance work and full-time positions. If you have a project that needs some
+              creative work, let&apos;s talk!
             </p>
           </motion.div>
 
@@ -112,7 +112,7 @@ export default function ContactSection() {
               <div className="bg-card/30 backdrop-blur-sm rounded-xl p-6 border border-[#6BA5D7]/20">
                 <h3 className="text-xl font-bold mb-4">Availability</h3>
                 <p className="text-muted-foreground mb-4">
-                  I'm currently available for new opportunities and would love to discuss how I can contribute to your
+                  I&apos;m currently available for new opportunities and would love to discuss how I can contribute to your
                   team or project.
                 </p>
                 <div className="flex items-center gap-2 text-sm">
