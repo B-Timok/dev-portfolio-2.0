@@ -1,5 +1,7 @@
 "use client"
 
+import Head from "next/head"
+
 import { useEffect } from "react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
@@ -21,16 +23,22 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <ProjectsSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <meta property="og:image" content="/og_image.png"></meta>
+      </Head>
+      
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
+        <main>
+          <HeroSection />
+          <ProjectsSection />
+          <AboutSection />
+          <ExperienceSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }
