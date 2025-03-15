@@ -33,8 +33,8 @@ export default function Home() {
         <main>
           <HeroSection />
           <ProjectsSection />
-          <AboutSection />
           <ExperienceSection />
+          <AboutSection />
           <ContactSection />
         </main>
         <Footer />
