@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta property="og:image" content="/og_image.png"></meta>
+        <meta property="og:image" content="https://dev-portfolio-2-0.vercel.app/og_image.png"></meta>
       </Head>
       
       <div className="min-h-screen bg-background text-foreground">
