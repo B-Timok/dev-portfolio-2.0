@@ -21,18 +21,18 @@ import { TbApi } from "react-icons/tb"
 export default function ProjectsSection() {
   const projects = [
     {
-      title: "Athlos Workout App",
+      title: "Athlos Fitness",
       description:
-        "A full-stack web and mobile app designed to personalize and simplify workout routines, leveraging Supabase and advanced API development for optimal user experiences.",
+        "A full-stack mobile app designed to personalize and simplify workout routines, leveraging Supabase and advanced API development for optimal user experiences.",
       technologies: [
-        { name: "Next.js", icon: SiNextdotjs },
+        { name: "React Native", icon: SiReact },
         { name: "TypeScript", icon: SiTypescript },
         { name: "Supabase", icon: SiSupabase },
         { name: "Tailwind CSS", icon: SiTailwindcss },
         { name: "APIs", icon: TbApi },
       ],
       github: "https://github.com/B-Timok/Athlos",
-      demo: "https://athlos-plum.vercel.app/",
+      demo: "https://testflight.apple.com/join/VQkRyejA",
       image: "/workoutai.png",
       featured: true,
     },
