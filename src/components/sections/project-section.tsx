@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, Layers } from "lucide-react"
@@ -19,6 +20,19 @@ import {
 import { TbApi } from "react-icons/tb"
 
 export default function ProjectsSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState("")
+
+  const openModal = (image: string) => {
+    setSelectedImage(image)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedImage("")
+  }
+
   const projects = [
     {
       title: "Athlos Fitness",
@@ -33,7 +47,7 @@ export default function ProjectsSection() {
       ],
       github: "https://github.com/B-Timok/Athlos",
       demo: "https://testflight.apple.com/join/VQkRyejA",
-      image: "/athlos-dash.jpg",
+      images: ["/athlos-dash.jpg", "/athlos-workout.jpg", "/athlos-stats.jpg"],
       featured: true,
     },
     {
@@ -164,33 +178,21 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className="order-1 lg:order-2 grid grid-cols-3 gap-4">
-                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
-                    <Image
-                      src="/athlos-dash.jpg"
-                      alt={`${project.title} Screenshot 1`}
-                      width={640}
-                      height={360}
-                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
-                    <Image
-                      src="/athlos-workout.jpg"
-                      alt={`${project.title} Screenshot 2`}
-                      width={640}
-                      height={360}
-                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
-                    <Image
-                      src="/athlos-stats.jpg"
-                      alt={`${project.title} Screenshot 3`}
-                      width={640}
-                      height={360}
-                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
+                  {project.images?.map((image, i) => (
+                    <div
+                      key={i}
+                      className="relative aspect-[9/16] overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => openModal(image)}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${project.title} Screenshot ${i + 1}`}
+                        width={640}
+                        height={360}
+                        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
@@ -280,6 +282,30 @@ export default function ProjectsSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          onClick={closeModal}
+        >
+          <div className="relative">
+            <Image
+              src={selectedImage}
+              alt="Full Image"
+              width={400}
+              height={600}
+              className="rounded-lg"
+            />
+            <button
+              className="absolute top-2 right-2 text-white text-2xl"
+              onClick={closeModal}
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
