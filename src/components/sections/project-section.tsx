@@ -33,7 +33,7 @@ export default function ProjectsSection() {
       ],
       github: "https://github.com/B-Timok/Athlos",
       demo: "https://testflight.apple.com/join/VQkRyejA",
-      image: "/workoutai.png",
+      image: "/athlos-dash.jpg",
       featured: true,
     },
     {
@@ -145,7 +145,7 @@ export default function ProjectsSection() {
 
                   <div className="flex gap-4">
                     <Link
-                      href="https://github.com/B-Timok/Athlos"
+                      href={project.github}
                       target="_blank"
                       className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#6BA5D7] transition-colors"
                     >
@@ -153,7 +153,7 @@ export default function ProjectsSection() {
                       <span>Source Code (Private)</span>
                     </Link>
                     <Link
-                      href="https://athlos-plum.vercel.app/"
+                      href={project.demo || "#"}
                       target="_blank"
                       className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#6BA5D7] transition-colors"
                     >
@@ -163,15 +163,34 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                <div className="order-1 lg:order-2 relative aspect-video overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 bg-[#6BA5D7] mix-blend-multiply opacity-10"></div>
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={640}
-                    height={360}
-                    className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                  />
+                <div className="order-1 lg:order-2 grid grid-cols-3 gap-4">
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
+                    <Image
+                      src="/athlos-dash.jpg"
+                      alt={`${project.title} Screenshot 1`}
+                      width={640}
+                      height={360}
+                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
+                    <Image
+                      src="/athlos-workout.jpg"
+                      alt={`${project.title} Screenshot 2`}
+                      width={640}
+                      height={360}
+                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-xl">
+                    <Image
+                      src="/athlos-stats.jpg"
+                      alt={`${project.title} Screenshot 3`}
+                      width={640}
+                      height={360}
+                      className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
                 </div>
               </motion.div>
             ))}
