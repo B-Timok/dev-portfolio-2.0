@@ -1,311 +1,213 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ExternalLink, Layers } from "lucide-react"
-import { motion } from "framer-motion"
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiReact,
-  SiSupabase,
-  SiTailwindcss,
-  SiMongodb,
-  SiDocker,
-  SiMysql,
-  SiGithub,
-  SiPython,
-} from "react-icons/si"
-import { TbApi } from "react-icons/tb"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { AppStoreBadge } from "@/components/ui/app-store-badge"
+import { markerClassByIndex, borderClassByIndex, bgClassByIndex, borderLeftClassByIndex } from "@/lib/playful"
 
 export default function ProjectsSection() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedImage, setSelectedImage] = useState("")
-
-  const openModal = (image: string) => {
-    setSelectedImage(image)
-    setIsModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedImage("")
-  }
-
-  const projects = [
+  type Project = { title: string; description: string; github: string; image: string; demo?: string; tech?: string[] }
+  const projects: Project[] = [
     {
-      title: "Athlos Fitness",
-      description:
-        "A full-stack mobile app designed to personalize and simplify workout routines, leveraging Supabase and advanced API development for optimal user experiences.",
-      technologies: [
-        { name: "React Native", icon: SiReact },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "Supabase", icon: SiSupabase },
-        { name: "Tailwind CSS", icon: SiTailwindcss },
-        { name: "APIs", icon: TbApi },
-      ],
-      github: "https://github.com/B-Timok/Athlos",
-      demo: "https://testflight.apple.com/join/VQkRyejA",
-      images: ["/athlos-dash.jpg", "/athlos-workout.jpg", "/athlos-stats.jpg"],
-      featured: true,
+      title: "KLSLeadership Website",
+      description: "Freelance project: modern website for KLSLeadership (Next.js, Tailwind).",
+      github: "#",
+      image: "/window.svg",
+      tech: ["Next.js", "TypeScript", "Tailwind"],
     },
     {
-      title: "Roadwatch Safety App",
-      description:
-        "Award-winning road safety app developed with a team of peers at UNLV. Provides real-time tracking of road conditions and incident reporting to improve community safety.",
-      technologies: [
-        { name: "React", icon: SiReact },
-        { name: "Next.js", icon: SiNextdotjs },
-        { name: "MongoDB", icon: SiMongodb },
-        { name: "Docker", icon: SiDocker },
-      ],
+      title: "Roadwatch",
+      description: "Award-winning road safety app (Next.js, MongoDB, Docker).",
       github: "https://github.com/UNLV-CS472-672/2024-S-GROUP1-Roadwatch",
-      demo: "#",
       image: "/roadwatch.png",
+      tech: ["Next.js", "MongoDB", "Docker"],
     },
     {
-      title: "Speedcube Collection",
-      description:
-        "Database-driven web app to manage and analyze a collection of Rubik's cubes, tracking personal records, solving trends, and performance metrics.",
-      technologies: [
-        { name: "MySQL", icon: SiMysql },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "Next.js", icon: SiNextdotjs },
-      ],
-      github: "https://github.com/B-Timok/SideProjects/tree/main/sqlProjects/speedCubes",
-      image: "/speedcubedb.png",
-    },
-    {
-      title: "NBA Scoreboard Analysis",
-      description:
-        "Real-time NBA game score and statistic analysis using the NBA API. Developed with Python, using libraries such as requests, pandas, and tkinter.",
-      technologies: [
-        { name: "Python", icon: SiPython },
-        { name: "APIs", icon: TbApi },
-      ],
+      title: "NBA Scoreboard",
+      description: "Realtime NBA analysis using public APIs (Python).",
       github: "https://github.com/B-Timok/SideProjects/tree/main/pyProjects/sportsScores",
       image: "/nbascores.png",
+      tech: ["Python", "APIs"],
     },
   ]
 
   return (
-    <section id="projects" className="relative bg-background dark:bg-background/30">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid-small-white/[0.02] -z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background" />
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-4"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-[#6BA5D7]/10 flex items-center justify-center">
-                <Layers className="w-5 h-5 text-[#6BA5D7]" />
+    <section id="projects" className="py-16">
+      {/* Featured Athlos - full bleed */}
+      <div id="athlos" className="mb-12 border-y border-border bg-secondary/30">
+        <div className="px-4 sm:px-6 lg:px-8 py-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 items-start">
+            {/* Content */}
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Featured</span>
+                <h2 className="text-3xl font-semibold">Athlos Fitness</h2>
+                <p className="text-sm text-muted-foreground max-w-prose">
+                  Athlos is a full‑stack mobile app for personalized training. It generates adaptive workout plans,
+                  tracks progress, and syncs securely across devices.
+                </p>
               </div>
-              <h2 className="text-3xl font-bold text-[#6BA5D7]">Featured Projects</h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <h3 className="text-sm font-medium">Product scope</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1.5 list-disc list-inside">
+                    <li className={markerClassByIndex(0)}>Adaptive plans, exercise logging, and progress charts</li>
+                    <li className={markerClassByIndex(1)}>Offline‑first UX with seamless sync</li>
+                    <li className={markerClassByIndex(2)}>Privacy by default; exportable data</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-sm font-medium">Full‑stack implementation</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1.5 list-disc list-inside">
+                    <li className={markerClassByIndex(3)}>Mobile: React Native + TypeScript</li>
+                    <li className={markerClassByIndex(4)}>Backend: Supabase (Auth, Postgres, Storage, Row‑level security)</li>
+                    <li className={markerClassByIndex(1)}>APIs: clean REST endpoints for training and analytics</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {["React Native","TypeScript","Supabase","Postgres","RLS","REST APIs"].map((t) => (
+                  <span key={t} className="text-xs px-2 py-1 rounded-full bg-muted text-foreground/80 border border-border">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3 pt-2 items-center">
+                <AppStoreBadge href="https://apps.apple.com/" />
+                <Button asChild size="sm" variant="outline">
+                  <Link href="https://testflight.apple.com/join/VQkRyejA" target="_blank">TestFlight</Link>
+                </Button>
+                <Button asChild size="sm" variant="outline">
+                  <Link href="https://github.com/B-Timok/Athlos" target="_blank">Source</Link>
+                </Button>
+              </div>
             </div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Some of my recent work, showcasing my skills in full-stack development, UI/UX design, database management,
-              and collaborative teamwork.
-            </p>
-          </motion.div>
 
-          {/* Featured Project */}
-          {projects
-            .filter((p) => p.featured)
-            .map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-card/30 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-[#6BA5D7]/20"
-              >
-                <div className="order-2 lg:order-1 space-y-6">
-                  <div>
-                    <div className="inline-block px-3 py-1 mb-2 text-sm font-medium rounded-full bg-[#6BA5D7]/10 text-[#6BA5D7] border border-[#6BA5D7]/20">
-                      Featured Project
-                    </div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                  </div>
-
-                  <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-[#6BA5D7]/10">
-                    <p className="text-muted-foreground">{project.description}</p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    {project.technologies.map((tech, i) => {
-                      const Icon = tech.icon
-                      return (
-                        <div
-                          key={i}
-                          className="flex items-center gap-2 px-3 py-1.5 text-sm bg-[#6BA5D7]/5 text-[#6BA5D7] rounded-full border border-[#6BA5D7]/10"
-                        >
-                          <Icon className="w-4 h-4" />
-                          <span>{tech.name}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-
-                  <div className="flex gap-4">
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#6BA5D7] transition-colors"
-                    >
-                      <SiGithub className="w-4 h-4" />
-                      <span>Source Code (Private)</span>
-                    </Link>
-                    <Link
-                      href={project.demo || "#"}
-                      target="_blank"
-                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#6BA5D7] transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live App</span>
-                    </Link>
-                  </div>
+            {/* Creative device preview (no screenshots until provided) */}
+            <div className="relative h-[440px] hidden lg:block">
+              <div className={"absolute left-8 top-10 w-[170px] h-[340px] rounded-[2rem] bg-muted shadow-sm rotate-[-6deg] border " + borderClassByIndex(0)} />
+              <div className={"absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[400px] rounded-[2rem] bg-card shadow md:shadow-md border " + borderClassByIndex(2)}>
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border" />
+                <div className="absolute inset-6 rounded-xl border border-dashed border-border/60 flex items-center justify-center text-xs text-muted-foreground">
+                  Screenshots coming soon
                 </div>
-
-                <div className="order-1 lg:order-2 grid grid-cols-3 gap-4">
-                  {project.images?.map((image, i) => (
-                    <div
-                      key={i}
-                      className="relative aspect-[9/16] overflow-hidden rounded-xl cursor-pointer"
-                      onClick={() => openModal(image)}
-                    >
-                      <Image
-                        src={image}
-                        alt={`${project.title} Screenshot ${i + 1}`}
-                        width={640}
-                        height={360}
-                        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-
-          {/* Additional Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects
-              .filter((p) => !p.featured)
-              .map((project, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
-                  className="group flex flex-col bg-card/30 backdrop-blur-sm rounded-xl overflow-hidden border border-[#6BA5D7]/20 hover:border-[#6BA5D7]/30 transition-all hover:-translate-y-1"
-                >
-                  <div className="relative aspect-video overflow-hidden">
-                    <div className="absolute inset-0 bg-[#6BA5D7] mix-blend-multiply opacity-10"></div>
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      width={640}
-                      height={360}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="flex-1 p-5 space-y-4">
-                    <h3 className="text-lg font-bold line-clamp-1">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => {
-                        const Icon = tech.icon
-                        return (
-                          <div
-                            key={i}
-                            className="flex items-center gap-1.5 px-2 py-1 text-xs bg-[#6BA5D7]/5 text-[#6BA5D7] rounded-full border border-[#6BA5D7]/10"
-                          >
-                            <Icon className="w-3 h-3" />
-                            <span>{tech.name}</span>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="p-5 pt-0 mt-auto flex justify-between">
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-[#6BA5D7] transition-colors"
-                    >
-                      <SiGithub className="w-4 h-4" />
-                      <span>Code</span>
-                    </Link>
-                    <Link
-                      href={project.demo || "#"}
-                      target="_blank"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-[#6BA5D7] transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Demo</span>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
+              </div>
+              <div className={"absolute right-8 bottom-6 w-[170px] h-[340px] rounded-[2rem] bg-muted shadow-sm rotate-[6deg] border " + borderClassByIndex(4)} />
+            </div>
           </div>
-
-          {/* View More Projects Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-center pt-8"
-          >
-            <Link
-              href="https://github.com/B-Timok"
-              target="_blank"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#6BA5D7]/10 hover:bg-[#6BA5D7]/20 border border-[#6BA5D7]/20 transition-all"
-            >
-              <SiGithub className="w-4 h-4" />
-              <span>View More on GitHub</span>
-            </Link>
-          </motion.div>
         </div>
       </div>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
-          onClick={closeModal}
-        >
-          <div className="relative">
-            <Image
-              src={selectedImage}
-              alt="Full Image"
-              width={400}
-              height={600}
-              className="rounded-lg"
-            />
-            <button
-              className="absolute top-2 right-2 text-white text-2xl"
-              onClick={closeModal}
-            >
-              &times;
-            </button>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8">
+          <div className="flex items-baseline gap-3">
+            <h2 className="text-2xl font-semibold">Projects</h2>
+            <span className={"h-0.5 w-10 " + bgClassByIndex(3)}></span>
+          </div>
+          <div className={"mt-4 border-l-4 pl-4 text-sm text-muted-foreground " + borderLeftClassByIndex(3)}>
+            A selection of recent work. Clean code, minimal interfaces, and strong data models.
           </div>
         </div>
-      )}
+        {/* Featured first project as a split card */}
+        {projects[0] && (
+          <Card className={"mb-8 border-0"}>
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex items-baseline gap-2">
+                  <h3 className="text-xl font-medium">{projects[0].title}</h3>
+                  <span className={"text-xs px-2 py-0.5 rounded border " + borderClassByIndex(1)}>Freelance</span>
+                </div>
+                <p className="text-sm text-muted-foreground max-w-prose">
+                  Designed and built a modern marketing website for a local consulting company with a focus on speed,
+                  accessibility, and straightforward content management.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-sm font-medium">Highlights</h4>
+                    <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+                      <li className={markerClassByIndex(0)}>Clean information architecture and copy pass</li>
+                      <li className={markerClassByIndex(2)}>Responsive, accessible components</li>
+                      <li className={markerClassByIndex(4)}>Deployed with fast edge caching</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium">Stack</h4>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {projects[0].tech?.map((t) => (
+                        <span key={t} className="text-xs px-2 py-1 rounded-full bg-muted border border-border">{t}</span>
+                      ))}
+                    </div>
+                    <div className={"mt-4 border-l-4 pl-3 text-xs text-muted-foreground " + borderLeftClassByIndex(0)}>
+                      Result: fast load, easy edits, and a professional presence for client outreach.
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={projects[0].github} target="_blank">Code</Link>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Remaining projects in a grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.slice(1).map((p, index) => (
+            <Card key={p.title} className="card-hover border-0">
+              <CardHeader className="p-0">
+                <div className="relative w-full h-36 overflow-hidden rounded-t-lg">
+                  <Image src={p.image} alt={p.title} fill className="object-cover" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="py-3 space-y-2">
+                  <h3 className="font-medium">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground">{p.description}</p>
+                  <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1.5">
+                    {index === 0 ? (
+                      <>
+                        <li className={markerClassByIndex(0)}>Team project; shipped MVP at UNLV</li>
+                        <li className={markerClassByIndex(2)}>Map, reports, and community features</li>
+                        <li className={markerClassByIndex(4)}>Containerized dev with Docker</li>
+                      </>
+                    ) : (
+                      <>
+                        <li className={markerClassByIndex(1)}>Realtime scoreboard and box scores</li>
+                        <li className={markerClassByIndex(3)}>Data fetching, parsing, and caching</li>
+                        <li className={markerClassByIndex(0)}>Lightweight UI for quick scan</li>
+                      </>
+                    )}
+                  </ul>
+                  {p.tech && (
+                    <div className="flex flex-wrap gap-2">
+                      {p.tech.map((t) => (
+                        <span key={t} className="text-xs px-2 py-1 rounded-full bg-muted border border-border">{t}</span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="pt-1 flex gap-2">
+                    <Button asChild size="sm" variant="outline">
+                      <Link href={p.github} target="_blank">Code</Link>
+                    </Button>
+                    {p.demo && (
+                      <Button asChild size="sm">
+                        <Link href={p.demo} target="_blank">Demo</Link>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
