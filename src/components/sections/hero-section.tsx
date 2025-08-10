@@ -8,8 +8,8 @@ import { borderClassByIndex } from "@/lib/playful"
 export default function HeroSection() {
   return (
     <section className="pt-28 pb-10">
-      <div className="px-3 sm:px-4 lg:px-6">
-        <div className="max-w-5xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
             <div className={"relative shrink-0 w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48 overflow-hidden rounded-full border " + borderClassByIndex(0)}>
               <Image src="/avatar.png" alt="Avatar" fill className="object-cover" />

@@ -21,27 +21,28 @@ export default function ExperienceSection() {
       summary: "Modernized client websites and improved SEO and accessibility.",
       highlights: [
         "Shipped UX improvements that reduced bounce rate on key pages",
-        "Audited and improved a11y: color contrast, headings, and semantics",
-        "Delivered maintainable components and documentation for handoff",
+        "Audited and improved color contrast, headings, and semantics",
+        "Set up meetings with clients to discuss their needs and goals",
       ],
       tech: ["Next.js", "TypeScript", "SEO", "Accessibility"],
     },
     {
       company: "E‑commerce (Shopify)",
-      position: "Owner & Developer",
+      position: "Founder & Operator",
       period: "2017 – 2021",
-      summary: "Built and scaled a consulting‑heavy e‑commerce operation.",
+      summary: "Bootstrapped a Shopify business pre‑CS: storefront build, growth, and operations.",
       highlights: [
-        "Implemented custom storefront themes and integrated payments",
-        "Built dashboards for sales, payouts, and contractor operations",
-        "Managed recruiting/onboarding; streamlined SOPs for growth",
+        "Launched and maintained a custom Shopify storefront (themes, payments, apps)",
+        "Hired and managed 100+ contractors; built processes for recruiting and onboarding",
+        "Owned customer support, marketing, and advertising across channels",
+        "Scaled to $250k+ gross revenue; tracked unit economics and retention",
       ],
-      tech: ["Shopify", "Liquid", "Analytics", "Ops"],
+      tech: ["Shopify", "Liquid", "Ads", "Operations", "Analytics"],
     },
     {
       company: "Freelance",
       position: "Web Developer",
-      period: "2024 – Present",
+      period: "Dec 2024 – Present",
       summary: "Delivering websites for local businesses with a focus on speed and maintainability.",
       highlights: [
         "Information architecture, copy support, and brand alignment",
@@ -53,7 +54,7 @@ export default function ExperienceSection() {
     {
       company: "Athlos (solo)",
       position: "Mobile App Developer",
-      period: "Mar 2024 – Present",
+      period: "Mar 2025 – Present",
       summary: "Designing and building a personalized workout app end‑to‑end.",
       highlights: [
         "React Native app architecture and UI patterns",
@@ -65,9 +66,18 @@ export default function ExperienceSection() {
   ] as const
 
   const ordered = [...experiences].sort((a, b) => {
-    // crude sort by period start year descending
-    const getStartYear = (p: string) => parseInt((p.match(/\d{4}/g) || ["0"])[0] as string, 10)
-    return getStartYear(b.period) - getStartYear(a.period)
+    // Sort by period start (year, then month) descending
+    const monthIndex: Record<string, number> = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 }
+    const parseStart = (p: string) => {
+      const m = p.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)?\s*(\d{4})/)
+      const year = m ? parseInt(m[2], 10) : 0
+      const month = m && m[1] ? monthIndex[m[1]] ?? 0 : 0
+      return { year, month }
+    }
+    const sa = parseStart(a.period)
+    const sb = parseStart(b.period)
+    if (sb.year !== sa.year) return sb.year - sa.year
+    return sb.month - sa.month
   })
 
   return (
