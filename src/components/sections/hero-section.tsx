@@ -18,8 +18,9 @@ export default function HeroSection() {
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-3">Brandon Timok</h1>
               <p className="text-sm text-muted-foreground mb-6">Full‑stack developer • Henderson, NV</p>
               <p className="text-muted-foreground mb-4">
-                I build pragmatic, minimal interfaces and reliable backends. My toolkit includes Next.js, TypeScript,
-                Tailwind, and C#/Node APIs with SQL.
+                I build pragmatic, minimal interfaces and reliable backends. Toolkit: Next.js, TypeScript, Tailwind,
+                React Native/Expo, Supabase/Postgres, Docker, and C#/.NET or Node APIs — shipping with Vercel, Resend,
+                and integrations like RevenueCat + Apple IAP.
               </p>
               <p className="text-muted-foreground mb-6">
                 Currently developing Athlos, a mobile app for personalized workouts, and shipping AI‑assisted tools for
