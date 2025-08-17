@@ -52,7 +52,7 @@ export default function Navigation() {
                 </Link>
               ))}
               <div className="h-px w-full bg-border" />
-              <Link href="/BTimokResume24.pdf" target="_blank" className="text-sm" onClick={() => setOpen(false)}>
+              <Link href="/Resume25.pdf" target="_blank" className="text-sm" onClick={() => setOpen(false)}>
                 Resume
               </Link>
             </div>

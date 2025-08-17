@@ -20,7 +20,7 @@ export default function AboutSection() {
               a fan of cooking, basketball, and the occasional poker tournament.
             </p>
             <ul className="list-disc list-inside space-y-1.5">
-              <li className={markerClassByIndex(0)}>Tools I reach for: TypeScript, React/Next.js, Tailwind, Supabase</li>
+              <li className={markerClassByIndex(0)}>Tools I reach for: React Native/Expo, TypeScript, Swift/Obj-C, Supabase, RevenueCat</li>
               <li className={markerClassByIndex(2)}>I enjoy clean interfaces, sensible APIs, and straightforward docs</li>
               <li className={markerClassByIndex(4)}>I care about performance, accessibility, and maintainability</li>
             </ul>
