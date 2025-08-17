@@ -28,7 +28,7 @@ export default function Navigation() {
             ))}
             <div className="h-4 w-px bg-border" />
             <Button asChild variant="outline" size="sm">
-              <Link href="/BTimokResume24.pdf" target="_blank" aria-label="Resume">
+              <Link href="/Resume25.pdf" target="_blank" aria-label="Resume">
                 <FileText className="h-4 w-4" />
               </Link>
             </Button>
