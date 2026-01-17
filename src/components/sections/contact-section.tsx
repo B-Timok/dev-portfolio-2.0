@@ -11,14 +11,41 @@ import { borderClassByIndex } from "@/lib/playful"
 export default function ContactSection() {
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSending(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    setSending(false)
-    setSent(true)
-    setTimeout(() => setSent(false), 2500)
+    setError(null)
+
+    const form = e.currentTarget
+    const formData = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Failed to send message")
+      }
+
+      setSent(true)
+      form.reset()
+      setTimeout(() => setSent(false), 2500)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send message")
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -48,6 +75,9 @@ export default function ContactSection() {
               <Label htmlFor="message">Message</Label>
               <Textarea id="message" rows={5} required placeholder="Tell me a bit about your project" />
             </div>
+            {error && (
+              <p className="text-sm text-red-500">{error}</p>
+            )}
             <Button type="submit" disabled={sending}>
               {sending ? "Sending…" : sent ? "Sent!" : "Send message"}
             </Button>
