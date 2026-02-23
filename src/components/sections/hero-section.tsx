@@ -18,13 +18,13 @@ export default function HeroSection() {
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-3">Brandon Timok</h1>
               <p className="text-sm text-muted-foreground mb-6">Full‑stack developer • Henderson, NV</p>
               <p className="text-muted-foreground mb-4">
-                I build pragmatic, minimal interfaces and reliable backends. Toolkit: React Native/Expo, TypeScript, 
-                Swift/Obj-C, Supabase/Postgres, Next.js, Tailwind, and Node APIs — shipping with RevenueCat, Apple IAP, 
-                Vercel, and integrations like OpenAI + ExerciseDB.
+                I build pragmatic, minimal interfaces and reliable backends. Toolkit: TypeScript, React Native/Expo,
+                PostgreSQL, Vite, Tailwind, and API development — working across Windows and Linux with CI/CD pipelines
+                to ship fast.
               </p>
               <p className="text-muted-foreground mb-6">
-                Currently developing Athlos, a mobile app for personalized workouts, and shipping AI‑assisted tools for
-                educators.
+                Currently developing Athlos, a mobile app for personalized workouts, and freelancing on web development
+                projects.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild variant="outline">
