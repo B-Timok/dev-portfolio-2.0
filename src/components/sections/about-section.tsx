@@ -11,16 +11,19 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
           <div className="max-w-3xl space-y-4 text-muted-foreground">
             <p>
-              I’m Brandon — a full‑stack dev based in Henderson, NV. I like building small things that feel fast and
-              friendly. Most days I’m working on a fitness app, tinkering with UI details, or shaving seconds off load
-              times.
+              I’m Brandon — a full‑stack dev based in Henderson, NV. I like building things that feel fast and
+              friendly. Currently I’m leading frontend development on a telematics platform at ANA Corp while
+              growing Athlos, a fitness app with paying subscribers.
             </p>
             <p>
-              Off the keyboard you’ll usually find me in the gym, on a run, or buried in a good book. I’m also
+              Most days I’m shipping features, tinkering with UI details, or shaving seconds off load times.
+            </p>
+            <p>
+              Off the keyboard you’ll usually find me in the gym, on a run, or buried in a good book. Also
               a fan of cooking, basketball, and the occasional poker tournament.
             </p>
             <ul className="list-disc list-inside space-y-1.5">
-              <li className={markerClassByIndex(0)}>Tools I reach for: React Native/Expo, TypeScript, Swift/Obj-C, Supabase, RevenueCat</li>
+              <li className={markerClassByIndex(0)}>Tools I reach for: React, React Native, TypeScript, Node.js, PostgreSQL, Supabase, AWS</li>
               <li className={markerClassByIndex(2)}>I enjoy clean interfaces, sensible APIs, and straightforward docs</li>
               <li className={markerClassByIndex(4)}>I care about performance, accessibility, and maintainability</li>
             </ul>
@@ -30,7 +33,7 @@ export default function AboutSection() {
             <p className="text-sm text-muted-foreground">B.S. in Computer Science, UNLV (2024)</p>
             <div className="mt-3 h-px w-full bg-border" />
             <h3 className="text-sm font-medium mt-3 mb-2">Currently</h3>
-            <p className="text-sm text-muted-foreground">Shipping a fitness app and helping a few folks with web projects.</p>
+            <p className="text-sm text-muted-foreground">Software Engineer Intern at ANA Corp, building Athlos, and freelancing on web projects.</p>
           </div>
         </div>
       </div>
