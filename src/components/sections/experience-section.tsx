@@ -13,7 +13,7 @@ export default function ExperienceSection() {
         "Redesigned core UI components with fully responsive layouts",
         "Contribute to backend API development, database queries, and AWS infrastructure",
       ],
-      tech: ["React", "TypeScript", "Tailwind", "Node.js", "PostgreSQL", "AWS", "Docker", "Terraform"],
+      tech: ["React", "TypeScript", "Tailwind", "Node.js", "PostgreSQL", "AWS", "Docker", "Terraform", "Vite"],
     },
     {
       company: "Lessi AI",
@@ -52,7 +52,7 @@ export default function ExperienceSection() {
       tech: ["Next.js", "TypeScript", "Tailwind"],
     },
     {
-      company: "Athlos (solo)",
+      company: "Athlos",
       position: "Mobile App Developer",
       period: "Mar 2025 – Present",
       summary: "Designing and building a personalized workout app end‑to‑end.",
@@ -61,7 +61,7 @@ export default function ExperienceSection() {
         "Supabase auth, Postgres schema design, and RLS policies",
         "REST APIs for training logic and analytics",
       ],
-      tech: ["React Native", "TypeScript", "Supabase"],
+      tech: ["React Native", "TypeScript", "Vite", "Supabase"],
     },
   ] as const
 

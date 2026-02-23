@@ -97,7 +97,7 @@ export default function ContactSection() {
               <div>
                 <h3 className="text-sm font-medium">Preferred stack</h3>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {['Next.js','TypeScript','Tailwind','C# / Node','Postgres'].map(tag => (
+                  {['TypeScript','React','React Native','Tailwind','Postgres','Vite','Docker','WSL','Vercel'].map(tag => (
                     <span key={tag} className="text-xs px-2 py-1 rounded-full bg-muted border border-border">{tag}</span>
                   ))}
                 </div>
