@@ -3,6 +3,19 @@ import { borderClassByIndex, markerClassByIndex } from "@/lib/playful"
 export default function ExperienceSection() {
   const experiences = [
     {
+      company: "ANA Corp",
+      position: "Software Engineer Intern",
+      period: "Dec 2025 – Present",
+      summary: "Leading frontend development and contributing to backend features for an internal telematics platform that monitors and manages industrial generator fleets.",
+      highlights: [
+        "Shipped 60+ pull requests across frontend and backend in first 8 weeks",
+        "Own all frontend changes for the telematics web application",
+        "Redesigned core UI components with fully responsive layouts",
+        "Contribute to backend API development, database queries, and AWS infrastructure",
+      ],
+      tech: ["React", "TypeScript", "Tailwind", "Node.js", "PostgreSQL", "AWS", "Docker", "Terraform"],
+    },
+    {
       company: "Lessi AI",
       position: "Software Developer",
       period: "Jul 2024 – Present",
@@ -25,19 +38,6 @@ export default function ExperienceSection() {
         "Set up meetings with clients to discuss their needs and goals",
       ],
       tech: ["Next.js", "TypeScript", "SEO", "Accessibility"],
-    },
-    {
-      company: "E‑commerce (Shopify)",
-      position: "Founder & Operator",
-      period: "2017 – 2021",
-      summary: "Bootstrapped a Shopify business pre‑CS: storefront build, growth, and operations.",
-      highlights: [
-        "Launched and maintained a custom Shopify storefront (themes, payments, apps)",
-        "Hired and managed 100+ contractors; built processes for recruiting and onboarding",
-        "Owned customer support, marketing, and advertising across channels",
-        "Scaled to $250k+ gross revenue; tracked unit economics and retention",
-      ],
-      tech: ["Shopify", "Liquid", "Ads", "Operations", "Analytics"],
     },
     {
       company: "Freelance",
