@@ -239,7 +239,7 @@ export default function ContactSection() {
                       </Link>
                     </Button>
                     <Button asChild size="sm">
-                      <Link href="/BTimokResume24.pdf" target="_blank">
+                      <Link href="/Resume25.pdf" target="_blank">
                         Resume
                       </Link>
                     </Button>
