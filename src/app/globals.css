@@ -146,14 +146,15 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Hero avatar liminal ring: slow spin + gentle breathe */
-@keyframes hero-ring-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Hero avatar liminal ring: solid color cycling through the palette one at
+   a time (hard switches, no gradient) + gentle breathe */
+@keyframes hero-ring-cycle {
+  0%   { background-color: #7dd3fc; }
+  20%  { background-color: #f9a8d4; }
+  40%  { background-color: #c4b5fd; }
+  60%  { background-color: #86efac; }
+  80%  { background-color: #fcd34d; }
+  100% { background-color: #7dd3fc; }
 }
 
 @keyframes hero-ring-breathe {
@@ -204,17 +205,17 @@
 
 .btn-shimmer-iridescent {
   position: relative;
+  --shimmer-streak: rgba(125, 211, 252, 0.4);
   background-image: linear-gradient(
     110deg,
-    transparent 20%,
-    rgba(125, 211, 252, 0.38) 40%,
-    rgba(249, 168, 212, 0.38) 50%,
-    rgba(196, 181, 253, 0.38) 60%,
-    transparent 80%
+    transparent 25%,
+    var(--shimmer-streak) 50%,
+    transparent 75%
   );
   background-size: 220% 100%;
   background-position: 220% 0;
   background-repeat: no-repeat;
+  animation: btn-shimmer-cycle 15s step-end infinite;
   transition: background-position 1s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.3s ease-out,
     color 0.3s ease-out,
@@ -224,6 +225,15 @@
 
 .btn-shimmer-iridescent:hover {
   background-position: -120% 0;
+}
+
+@keyframes btn-shimmer-cycle {
+  0%   { --shimmer-streak: rgba(125, 211, 252, 0.4); }
+  20%  { --shimmer-streak: rgba(249, 168, 212, 0.4); }
+  40%  { --shimmer-streak: rgba(196, 181, 253, 0.4); }
+  60%  { --shimmer-streak: rgba(134, 239, 172, 0.4); }
+  80%  { --shimmer-streak: rgba(252, 211, 77, 0.4); }
+  100% { --shimmer-streak: rgba(125, 211, 252, 0.4); }
 }
 
   .gradient-text { @apply text-foreground; }
