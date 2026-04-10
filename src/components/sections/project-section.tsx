@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { AppStoreBadge } from "@/components/ui/app-store-badge"
-import { borderClassByIndex, bgClassByIndex } from "@/lib/playful"
+import { bgClassByIndex } from "@/lib/playful"
 import { FadeUp } from "@/components/motion/fade-up"
 import { StaggerGroup } from "@/components/motion/stagger-group"
 import { StaggerItem } from "@/components/motion/stagger-item"
@@ -193,15 +193,23 @@ export default function ProjectsSection() {
               {/* Content */}
               <div className="space-y-5">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="relative w-8 h-8 rounded overflow-hidden bg-muted">
-                      <Image
-                        src="/athlos-avatar-v2.svg"
-                        alt="Athlos logo"
-                        fill
-                        className="object-contain p-1"
-                      />
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <div
+                      role="img"
+                      aria-label="Athlos logo"
+                      className="w-14 h-14 shrink-0"
+                      style={{
+                        backgroundColor: "#3ecf8e",
+                        maskImage: "url(/athlos-avatar-v2.svg)",
+                        WebkitMaskImage: "url(/athlos-avatar-v2.svg)",
+                        maskSize: "contain",
+                        WebkitMaskSize: "contain",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskRepeat: "no-repeat",
+                        maskPosition: "center",
+                        WebkitMaskPosition: "center",
+                      }}
+                    />
                     <h3 className="text-3xl font-semibold">Athlos Fitness</h3>
                   </div>
                   <p className="text-sm text-muted-foreground max-w-prose">
@@ -302,14 +310,14 @@ export default function ProjectsSection() {
 
               {/* Creative device preview with edge-to-edge screenshots */}
               <div className="relative h-[440px] hidden lg:block">
-                <div className={"absolute left-8 top-10 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[-6deg] border overflow-hidden " + borderClassByIndex(0)}>
+                <div className="absolute left-8 top-10 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[-6deg] overflow-hidden">
                   <Image src="/workout_mockup.png" alt="Athlos workout screen" fill className="object-contain" />
                 </div>
-                <div className={"absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[400px] rounded-[2rem] bg-[#111111] shadow md:shadow-md border overflow-hidden " + borderClassByIndex(2)}>
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[400px] rounded-[2rem] bg-[#111111] shadow md:shadow-md overflow-hidden">
                   <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border z-10" />
                   <Image src="/dashboard_mockup.png" alt="Athlos dashboard" fill className="object-contain" />
                 </div>
-                <div className={"absolute right-8 bottom-6 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[6deg] border overflow-hidden " + borderClassByIndex(4)}>
+                <div className="absolute right-8 bottom-6 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[6deg] overflow-hidden">
                   <Image src="/stats_mockup.png" alt="Athlos stats screen" fill className="object-contain" />
                 </div>
               </div>
