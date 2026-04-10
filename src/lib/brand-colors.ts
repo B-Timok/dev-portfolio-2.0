@@ -4,7 +4,7 @@ export const COMPANY_BRAND: Record<string, string> = {
   "ANA Corp":  "#ef4444",
   "Athlos":    "#3ecf8e",
   "Lessi AI":  "#f97316",
-  "Freelance": "#86efac",
+  "Freelance": "#3b82f6",
   "UNLV OED":  "#cf0a2c",
 }
 
@@ -15,6 +15,7 @@ export const TOOL_BRAND: Record<string, string> = {
   "JavaScript":   "#f7df1e",
   "Node.js":      "#5fa04e",
   "PostgreSQL":   "#4169e1",
+  "Postgres":     "#4169e1",
   "Supabase":     "#3ecf8e",
   "AWS":          "#ff9900",
   "Tailwind":     "#38bdf8",

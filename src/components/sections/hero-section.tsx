@@ -26,11 +26,10 @@ export default function HeroSection() {
       />
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <StaggerGroup
-            stagger={0.12}
-            className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8"
-          >
+        <StaggerGroup
+          stagger={0.12}
+          className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8"
+        >
             <StaggerItem className="shrink-0">
               <div className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48">
                 {/* Conic gradient blur ring */}
@@ -107,8 +106,7 @@ export default function HeroSection() {
                 </div>
               </StaggerItem>
             </div>
-          </StaggerGroup>
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   )

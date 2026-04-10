@@ -29,7 +29,24 @@ export function useActiveSection(sectionIds: string[]): string | null {
     )
 
     elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    // Bottom-of-page fallback: when the user scrolls to the end of the document,
+    // force the last section active regardless of the observer's detection zone.
+    const handleScroll = () => {
+      const scrolledToBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 8
+      if (scrolledToBottom) {
+        setActive(sectionIds[sectionIds.length - 1])
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [sectionIds])
 
   return active
