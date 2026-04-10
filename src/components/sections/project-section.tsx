@@ -309,16 +309,16 @@ export default function ProjectsSection() {
               </div>
 
               {/* Creative device preview with edge-to-edge screenshots */}
-              <div className="relative h-[440px] hidden lg:block">
-                <div className="absolute left-8 top-10 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[-6deg] overflow-hidden">
+              <div className="relative h-[440px] hidden lg:block max-w-[480px] mx-auto w-full">
+                <div className="absolute left-8 top-15 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[-6deg] overflow-hidden transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 hover:shadow-[0_20px_50px_-10px_rgba(62,207,142,0.55)] will-change-transform">
                   <Image src="/workout_mockup.png" alt="Athlos workout screen" fill className="object-contain" />
                 </div>
-                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[400px] rounded-[2rem] bg-[#111111] shadow md:shadow-md overflow-hidden">
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[400px] rounded-[2rem] bg-[#111111] shadow md:shadow-md overflow-hidden transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-x-1/2 hover:-translate-y-3 hover:scale-[1.06] hover:z-20 hover:shadow-[0_20px_50px_-10px_rgba(62,207,142,0.55)] will-change-transform">
                   <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border z-10" />
-                  <Image src="/dashboard_mockup.png" alt="Athlos dashboard" fill className="object-contain" />
-                </div>
-                <div className="absolute right-8 bottom-6 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[6deg] overflow-hidden">
                   <Image src="/stats_mockup.png" alt="Athlos stats screen" fill className="object-contain" />
+                </div>
+                <div className="absolute right-8 bottom-7 w-[170px] h-[340px] rounded-[2rem] bg-[#111111] shadow-sm rotate-[6deg] overflow-hidden transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 hover:shadow-[0_20px_50px_-10px_rgba(62,207,142,0.55)] will-change-transform">
+                  <Image src="/dashboard_mockup.png" alt="Athlos dashboard screen" fill className="object-contain" />
                 </div>
               </div>
             </div>

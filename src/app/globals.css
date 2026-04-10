@@ -168,6 +168,34 @@
   }
 }
 
+/* Button shimmer sweep: a soft light streak that crosses the button on hover */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 75%
+  );
+  background-size: 220% 100%;
+  background-position: 220% 0;
+  transition: background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn-shimmer:hover::before {
+  background-position: -120% 0;
+}
+
   .gradient-text { @apply text-foreground; }
 
 .section-pattern {

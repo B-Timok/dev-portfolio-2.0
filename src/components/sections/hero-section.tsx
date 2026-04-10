@@ -80,17 +80,8 @@ export default function HeroSection() {
                 </p>
               </StaggerItem>
               <StaggerItem>
-                <p className="text-muted-foreground mb-4">
-                  I build pragmatic, minimal interfaces and reliable backends.
-                  Toolkit: TypeScript, React Native/Expo, PostgreSQL, Vite,
-                  Tailwind, and API development — working across Windows and
-                  Linux with CI/CD pipelines to ship fast.
-                </p>
-              </StaggerItem>
-              <StaggerItem>
-                <p className="text-muted-foreground mb-6">
-                  Currently developing Athlos, a mobile app for personalized
-                  workouts, and freelancing on web development projects.
+                <p className="text-muted-foreground mb-6 max-w-prose">
+                  I build fast, minimal interfaces backed by reliable APIs — currently solo‑shipping Athlos and freelancing on web projects.
                 </p>
               </StaggerItem>
               <StaggerItem>
