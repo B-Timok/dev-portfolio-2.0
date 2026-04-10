@@ -146,15 +146,23 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Hero avatar liminal ring: solid color cycling through the palette one at
-   a time (hard switches, no gradient) + gentle breathe */
+/* Hero avatar accent: a CSS variable that smoothly cycles through the
+   palette, read by both the blurred ring behind the avatar AND the avatar's
+   own border so they stay in sync. Requires @property for color-typed
+   interpolation so the transitions are smooth instead of step snaps. */
+@property --avatar-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #7dd3fc;
+}
+
 @keyframes hero-ring-cycle {
-  0%   { background-color: #7dd3fc; }
-  20%  { background-color: #f9a8d4; }
-  40%  { background-color: #c4b5fd; }
-  60%  { background-color: #86efac; }
-  80%  { background-color: #fcd34d; }
-  100% { background-color: #7dd3fc; }
+  0%   { --avatar-accent: #7dd3fc; }
+  20%  { --avatar-accent: #f9a8d4; }
+  40%  { --avatar-accent: #c4b5fd; }
+  60%  { --avatar-accent: #86efac; }
+  80%  { --avatar-accent: #fcd34d; }
+  100% { --avatar-accent: #7dd3fc; }
 }
 
 @keyframes hero-ring-breathe {

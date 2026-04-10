@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { borderClassByIndex } from "@/lib/playful"
 import { StaggerGroup } from "@/components/motion/stagger-group"
 import { StaggerItem } from "@/components/motion/stagger-item"
 
@@ -31,25 +30,28 @@ export default function HeroSection() {
           className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8"
         >
             <StaggerItem className="shrink-0">
-              <div className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48">
-                {/* Solid ring cycling through palette colors one at a time + gentle breathe */}
+              <div
+                className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48"
+                style={{
+                  animation: "hero-ring-cycle 25s ease-in-out infinite",
+                }}
+              >
+                {/* Blurred ring behind the avatar — reads the shared accent variable,
+                    breathe animation handles the opacity/blur pulse */}
                 <div
                   aria-hidden="true"
                   className="absolute -inset-3 rounded-full"
                   style={{
-                    backgroundColor: "#7dd3fc",
+                    backgroundColor: "var(--avatar-accent)",
                     filter: "blur(14px)",
                     opacity: 0.35,
-                    animation:
-                      "hero-ring-cycle 25s step-end infinite, hero-ring-breathe 7s ease-in-out infinite",
+                    animation: "hero-ring-breathe 7s ease-in-out infinite",
                     willChange: "background-color, filter, opacity",
                   }}
                 />
                 <div
-                  className={
-                    "relative w-full h-full overflow-hidden rounded-full border " +
-                    borderClassByIndex(0)
-                  }
+                  className="relative w-full h-full overflow-hidden rounded-full border-2"
+                  style={{ borderColor: "var(--avatar-accent)" }}
                 >
                   <Image
                     src="/avatar.png"
