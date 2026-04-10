@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { borderClassByIndex } from "@/lib/playful"
+import { TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 import { FadeUp } from "@/components/motion/fade-up"
 
 const FIELD_ACCENT = {
@@ -212,15 +213,33 @@ export default function ContactSection() {
 
                 <div>
                   <h3 className="text-sm font-medium">Preferred stack</h3>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {["TypeScript","React","React Native","Tailwind","Postgres","Vite","Docker","WSL","Vercel"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded-full bg-muted border border-border"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {["TypeScript","React","React Native","Tailwind","Postgres","Vite","Docker","WSL","Vercel"].map((tag) => {
+                      const brand = brandColor(tag, TOOL_BRAND)
+                      return (
+                        <span
+                          key={tag}
+                          className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-muted-foreground transition-[color,border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[1px]"
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = brand
+                            e.currentTarget.style.borderColor = brand
+                            e.currentTarget.style.backgroundColor = `${brand}14`
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.color = ""
+                            e.currentTarget.style.borderColor = ""
+                            e.currentTarget.style.backgroundColor = ""
+                          }}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="h-1.5 w-1.5 rounded-full"
+                            style={{ background: brand }}
+                          />
+                          {tag}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
 

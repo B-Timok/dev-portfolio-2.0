@@ -1,6 +1,5 @@
 "use client"
 
-import { markerClassByIndex } from "@/lib/playful"
 import { COMPANY_BRAND, TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 import { FadeUp } from "@/components/motion/fade-up"
 import { StaggerGroup } from "@/components/motion/stagger-group"
@@ -33,7 +32,7 @@ const experiences: Experience[] = [
   {
     company: "Lessi AI",
     position: "Software Developer",
-    period: "Jul 2024 – Present",
+    period: "Jul 2024 – March 2025",
     summary:
       "Building AI‑assisted tools for educators; shipping fast in a lean environment.",
     highlights: [
@@ -115,27 +114,11 @@ export default function ExperienceSection() {
           </div>
         </FadeUp>
 
-        <div className="relative pl-8 md:pl-10">
-          {/* Solid neutral spine */}
-          <div
-            aria-hidden="true"
-            className="absolute left-[10px] md:left-[14px] top-2 bottom-2 w-[2px] bg-[#222]"
-          />
-
-          <StaggerGroup stagger={0.1}>
+        <StaggerGroup stagger={0.1}>
             {ordered.map((e) => {
               const brand = brandColor(e.company, COMPANY_BRAND)
               return (
-                <StaggerItem key={e.company} className="relative pb-8 last:pb-0">
-                  {/* Dot on the spine */}
-                  <div
-                    aria-hidden="true"
-                    className="absolute left-[-28px] md:left-[-24px] top-2 w-4 h-4 rounded-full bg-background"
-                    style={{
-                      border: `2.5px solid ${brand}`,
-                      boxShadow: `0 0 12px -2px ${brand}`,
-                    }}
-                  />
+                <StaggerItem key={e.company} className="pb-8 last:pb-0">
 
                   <div
                     className="group rounded-lg border border-border bg-card p-4 transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px]"
@@ -171,21 +154,31 @@ export default function ExperienceSection() {
                       <summary className="text-xs text-muted-foreground cursor-pointer select-none">
                         {e.highlights.length} highlights
                       </summary>
-                      <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+                      <div className="mt-2 space-y-1.5 text-sm text-muted-foreground">
                         {e.highlights.map((h, i) => (
-                          <li key={i} className={markerClassByIndex(i % 5)}>
-                            {h}
-                          </li>
+                          <div key={i} className="flex items-start gap-2">
+                            <span
+                              aria-hidden="true"
+                              className="mt-[0.55em] h-1 w-1 rounded-full flex-shrink-0"
+                              style={{ background: brand }}
+                            />
+                            <span>{h}</span>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </details>
-                    <ul className="hidden md:block mt-3 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+                    <div className="hidden md:block mt-3 space-y-1.5 text-sm text-muted-foreground">
                       {e.highlights.map((h, i) => (
-                        <li key={i} className={markerClassByIndex(i % 5)}>
-                          {h}
-                        </li>
+                        <div key={i} className="flex items-start gap-2">
+                          <span
+                            aria-hidden="true"
+                            className="mt-[0.55em] h-1 w-1 rounded-full flex-shrink-0"
+                            style={{ background: brand }}
+                          />
+                          <span>{h}</span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
 
                     {e.tech.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -211,7 +204,6 @@ export default function ExperienceSection() {
               )
             })}
           </StaggerGroup>
-        </div>
       </div>
     </section>
   )
