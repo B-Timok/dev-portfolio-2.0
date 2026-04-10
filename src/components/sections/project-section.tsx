@@ -2,10 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { AppStoreBadge } from "@/components/ui/app-store-badge"
-import { markerClassByIndex, borderClassByIndex, bgClassByIndex, borderLeftClassByIndex } from "@/lib/playful"
+import { markerClassByIndex, borderClassByIndex, bgClassByIndex } from "@/lib/playful"
+import { FadeUp } from "@/components/motion/fade-up"
+import { StaggerGroup } from "@/components/motion/stagger-group"
+import { StaggerItem } from "@/components/motion/stagger-item"
+import { TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 
 export default function ProjectsSection() {
   type Project = { title: string; description: string; github: string; image: string; demo?: string; tech?: string[] }
@@ -36,7 +39,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-16">
       {/* Featured Athlos - full bleed */}
-      <div id="athlos" className="mb-12 border-y border-border bg-secondary/30">
+      <FadeUp><div id="athlos" className="mb-12 border-y border-border bg-secondary/30">
         <div className="px-4 sm:px-6 lg:px-8 py-12 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 items-start">
             {/* Content */}
@@ -107,10 +110,10 @@ export default function ProjectsSection() {
             </div>
           </div>
         </div>
-      </div>
+      </div></FadeUp>
 
       {/* Featured KLS - full bleed (mirrors Athlos layout) */}
-      <div id="kls" className="mb-12 border-y border-border bg-secondary/30">
+      <FadeUp><div id="kls" className="mb-12 border-y border-border bg-secondary/30">
         <div className="px-4 sm:px-6 lg:px-8 py-12 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 items-start">
             {/* Content */}
@@ -172,70 +175,110 @@ export default function ProjectsSection() {
             </div>
           </div>
         </div>
-      </div>
+      </div></FadeUp>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <div className="flex items-baseline gap-3">
-            <h2 className="text-2xl font-semibold">Other Projects</h2>
-            <span className={"h-0.5 w-10 " + bgClassByIndex(3)}></span>
+        <FadeUp>
+          <div className="mb-8">
+            <div className="flex items-baseline gap-3">
+              <h2 className="text-2xl font-semibold">Other Projects</h2>
+              <span className={"h-0.5 w-10 " + bgClassByIndex(3)}></span>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground max-w-prose">
+              A selection of recent work. Clean code, minimal interfaces, and strong data models.
+            </p>
           </div>
-          <div className={"mt-4 border-l-4 pl-4 text-sm text-muted-foreground " + borderLeftClassByIndex(3)}>
-            A selection of recent work. Clean code, minimal interfaces, and strong data models.
-          </div>
-        </div>
+        </FadeUp>
         
 
         {/* Remaining projects in a grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.slice(1).map((p, index) => (
-            <Card key={p.title} className="card-hover border-0 bg-transparent shadow-none">
-              <CardHeader className="p-0">
-                <div className="relative w-full h-36 overflow-hidden rounded-t-lg">
-                  <Image src={p.image} alt={p.title} fill className="object-cover" />
-                </div>
-              </CardHeader>
-              <CardContent className="px-5 sm:px-6">
-                <div className="py-3 space-y-2">
-                  <h3 className="font-medium">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground">{p.description}</p>
-                  <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1.5">
-                    {index === 0 ? (
-                      <>
-                        <li className={markerClassByIndex(0)}>Team project; shipped MVP at UNLV</li>
-                        <li className={markerClassByIndex(2)}>Map, reports, and community features</li>
-                        <li className={markerClassByIndex(4)}>Containerized dev with Docker</li>
-                      </>
-                    ) : (
-                      <>
-                        <li className={markerClassByIndex(1)}>Realtime scoreboard and box scores</li>
-                        <li className={markerClassByIndex(3)}>Data fetching, parsing, and caching</li>
-                        <li className={markerClassByIndex(0)}>Lightweight UI for quick scan</li>
-                      </>
-                    )}
-                  </ul>
-                  {p.tech && (
-                    <div className="flex flex-wrap gap-2">
-                      {p.tech.map((t) => (
-                        <span key={t} className="text-xs px-2 py-1 rounded-full bg-muted border border-border">{t}</span>
-                      ))}
+        <StaggerGroup>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.slice(1).map((p, index) => {
+              const accent = index === 0 ? "#f9a8d4" : "#c4b5fd"
+              return (
+                <StaggerItem key={p.title}>
+                  <div
+                    className="group rounded-lg border border-border bg-card overflow-hidden transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px]"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = accent
+                      e.currentTarget.style.boxShadow = `0 12px 28px -12px ${accent}`
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = ""
+                      e.currentTarget.style.boxShadow = ""
+                    }}
+                  >
+                    <div className="relative w-full h-36 overflow-hidden">
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background: `radial-gradient(circle at 70% 30%, ${accent}33, transparent 60%)`,
+                        }}
+                      />
                     </div>
-                  )}
-                  <div className="pt-1 flex gap-2">
-                    <Button asChild size="sm" variant="outline">
-                      <Link href={p.github} target="_blank">Code</Link>
-                    </Button>
-                    {p.demo && (
-                      <Button asChild size="sm">
-                        <Link href={p.demo} target="_blank">Demo</Link>
-                      </Button>
-                    )}
+                    <div className="p-5 space-y-2">
+                      <h3 className="font-medium">{p.title}</h3>
+                      <p className="text-sm text-muted-foreground">{p.description}</p>
+                      <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1.5">
+                        {index === 0 ? (
+                          <>
+                            <li className={markerClassByIndex(0)}>Team project; shipped MVP at UNLV</li>
+                            <li className={markerClassByIndex(2)}>Map, reports, and community features</li>
+                            <li className={markerClassByIndex(4)}>Containerized dev with Docker</li>
+                          </>
+                        ) : (
+                          <>
+                            <li className={markerClassByIndex(1)}>Realtime scoreboard and box scores</li>
+                            <li className={markerClassByIndex(3)}>Data fetching, parsing, and caching</li>
+                            <li className={markerClassByIndex(0)}>Lightweight UI for quick scan</li>
+                          </>
+                        )}
+                      </ul>
+                      {p.tech && (
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {p.tech.map((t) => {
+                            const tBrand = brandColor(t, TOOL_BRAND)
+                            return (
+                              <span
+                                key={t}
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono text-muted-foreground"
+                              >
+                                <span
+                                  className="h-1.5 w-1.5 rounded-full"
+                                  style={{ background: tBrand }}
+                                />
+                                {t}
+                              </span>
+                            )
+                          })}
+                        </div>
+                      )}
+                      <div className="pt-2 flex gap-2">
+                        <Button asChild size="sm" variant="outline">
+                          <Link href={p.github} target="_blank">Code</Link>
+                        </Button>
+                        {p.demo && (
+                          <Button asChild size="sm">
+                            <Link href={p.demo} target="_blank">Demo</Link>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                </StaggerItem>
+              )
+            })}
+          </div>
+        </StaggerGroup>
       </div>
     </section>
   )
