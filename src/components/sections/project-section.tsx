@@ -302,9 +302,6 @@ export default function ProjectsSection() {
 
                 <div className="flex flex-wrap gap-3 pt-2 items-center">
                   <AppStoreBadge href="https://apps.apple.com/us/app/athlos-fitness/id6744072500" />
-                  <Button asChild size="sm" variant="outline">
-                    <Link href="https://github.com/B-Timok/Athlos" target="_blank">Source</Link>
-                  </Button>
                 </div>
               </div>
 
