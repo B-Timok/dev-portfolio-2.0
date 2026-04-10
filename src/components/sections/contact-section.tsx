@@ -3,15 +3,23 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
 import { borderClassByIndex } from "@/lib/playful"
+import { FadeUp } from "@/components/motion/fade-up"
+
+const FIELD_ACCENT = {
+  name:    "#7dd3fc",
+  email:   "#f9a8d4",
+  subject: "#c4b5fd",
+  message: "#86efac",
+} as const
+
+type FieldKey = keyof typeof FIELD_ACCENT
 
 export default function ContactSection() {
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [focused, setFocused] = useState<FieldKey | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -48,80 +56,200 @@ export default function ContactSection() {
     }
   }
 
+  const fieldStyle = (key: FieldKey): React.CSSProperties => {
+    const isFocused = focused === key
+    return {
+      borderColor: isFocused ? FIELD_ACCENT[key] : undefined,
+      boxShadow: isFocused ? `0 0 0 3px ${FIELD_ACCENT[key]}1a` : undefined,
+    }
+  }
+
+  const labelStyle = (key: FieldKey): React.CSSProperties => {
+    const isFocused = focused === key
+    return {
+      color: isFocused ? FIELD_ACCENT[key] : undefined,
+    }
+  }
+
   return (
     <section id="contact" className="py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="inline-flex items-baseline gap-3 mb-8">
-          <h2 className="text-2xl font-semibold">Contact</h2>
-          <span className={"h-0.5 w-10 " + borderClassByIndex(0)}></span>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_0.8fr] gap-6">
-          <form onSubmit={handleSubmit} className={"order-1 lg:order-1 space-y-4 rounded-lg p-4 border " + borderClassByIndex(3)}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" required placeholder="Your name" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" required placeholder="you@example.com" />
-              </div>
-            </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="subject">Subject</Label>
-              <Input id="subject" required placeholder="Project inquiry" />
-            </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="message">Message</Label>
-              <Textarea id="message" rows={5} required placeholder="Tell me a bit about your project" />
-            </div>
-            {error && (
-              <p className="text-sm text-red-500">{error}</p>
-            )}
-            <Button type="submit" disabled={sending}>
-              {sending ? "Sending…" : sent ? "Sent!" : "Send message"}
-            </Button>
-          </form>
-
-          <div className="order-2 lg:order-2 rounded-lg p-5">
-            <div className="space-y-4 text-sm">
-              <div>
-                <h3 className="text-sm font-medium">Availability</h3>
-                <p className="text-muted-foreground mt-1">Open to freelance and full‑time roles.</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted border border-border">Remote‑friendly</span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted border border-border">US hours</span>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-medium">Preferred stack</h3>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {['TypeScript','React','React Native','Tailwind','Postgres','Vite','Docker','WSL','Vercel'].map(tag => (
-                    <span key={tag} className="text-xs px-2 py-1 rounded-full bg-muted border border-border">{tag}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-medium">Contact</h3>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <Button asChild size="sm" variant="outline">
-                    <Link href="mailto:timok@unlv.nevada.edu">Email</Link>
-                  </Button>
-                  <Button asChild size="sm" variant="outline">
-                    <Link href="https://www.linkedin.com/in/brandon-timok-589765253/" target="_blank">LinkedIn</Link>
-                  </Button>
-                  <Button asChild size="sm">
-                    <Link href="/BTimokResume24.pdf" target="_blank">Resume</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
+        <FadeUp>
+          <div className="inline-flex items-baseline gap-3 mb-8">
+            <h2 className="text-2xl font-semibold">Contact</h2>
+            <span className={"h-0.5 w-10 " + borderClassByIndex(0)} />
           </div>
+        </FadeUp>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_0.8fr] gap-6">
+          <FadeUp className="order-1 lg:order-1">
+            <form
+              onSubmit={handleSubmit}
+              className={"space-y-4 rounded-lg p-4 border " + borderClassByIndex(3)}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {(["name", "email"] as FieldKey[]).map((key) => (
+                  <div
+                    key={key}
+                    className="relative rounded-md border border-border bg-card px-3 pt-5 pb-2 transition-[border-color,box-shadow] duration-200"
+                    style={fieldStyle(key)}
+                  >
+                    <label
+                      htmlFor={key}
+                      className="absolute left-3 top-1 text-[9px] uppercase tracking-widest font-mono text-muted-foreground/70 transition-colors"
+                      style={labelStyle(key)}
+                    >
+                      {key}
+                    </label>
+                    <input
+                      id={key}
+                      name={key}
+                      type={key === "email" ? "email" : "text"}
+                      required
+                      onFocus={() => setFocused(key)}
+                      onBlur={() => setFocused(null)}
+                      className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/40 outline-none"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="relative rounded-md border border-border bg-card px-3 pt-5 pb-2 transition-[border-color,box-shadow] duration-200"
+                style={fieldStyle("subject")}
+              >
+                <label
+                  htmlFor="subject"
+                  className="absolute left-3 top-1 text-[9px] uppercase tracking-widest font-mono text-muted-foreground/70 transition-colors"
+                  style={labelStyle("subject")}
+                >
+                  subject
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  required
+                  onFocus={() => setFocused("subject")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/40 outline-none"
+                />
+              </div>
+
+              <div
+                className="relative rounded-md border border-border bg-card px-3 pt-5 pb-2 transition-[border-color,box-shadow] duration-200"
+                style={fieldStyle("message")}
+              >
+                <label
+                  htmlFor="message"
+                  className="absolute left-3 top-1 text-[9px] uppercase tracking-widest font-mono text-muted-foreground/70 transition-colors"
+                  style={labelStyle("message")}
+                >
+                  message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/40 outline-none resize-none"
+                />
+              </div>
+
+              {error && (
+                <p className="text-sm text-red-500" role="alert">
+                  {error}
+                </p>
+              )}
+
+              <Button
+                type="submit"
+                disabled={sending}
+                className={
+                  "group inline-flex items-center gap-2 transition-colors duration-300 " +
+                  (sent ? "!bg-[#86efac] !text-black" : "")
+                }
+              >
+                {sending
+                  ? "Sending…"
+                  : sent
+                    ? (
+                      <>
+                        Sent
+                        <span aria-hidden="true">✓</span>
+                      </>
+                    )
+                    : (
+                      <>
+                        Send message
+                        <span
+                          aria-hidden="true"
+                          className="inline-block transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          →
+                        </span>
+                      </>
+                    )}
+              </Button>
+            </form>
+          </FadeUp>
+
+          <FadeUp className="order-2 lg:order-2">
+            <div className="rounded-lg p-5">
+              <div className="space-y-4 text-sm">
+                <div>
+                  <h3 className="text-sm font-medium">Availability</h3>
+                  <p className="text-muted-foreground mt-1">
+                    Open to freelance and full‑time roles.
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="text-xs px-2 py-1 rounded-full bg-muted border border-border">Remote‑friendly</span>
+                    <span className="text-xs px-2 py-1 rounded-full bg-muted border border-border">US hours</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium">Preferred stack</h3>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {["TypeScript","React","React Native","Tailwind","Postgres","Vite","Docker","WSL","Vercel"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-2 py-1 rounded-full bg-muted border border-border"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium">Contact</h3>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <Button asChild size="sm" variant="outline">
+                      <Link href="mailto:timok@unlv.nevada.edu">Email</Link>
+                    </Button>
+                    <Button asChild size="sm" variant="outline">
+                      <Link
+                        href="https://www.linkedin.com/in/brandon-timok-589765253/"
+                        target="_blank"
+                      >
+                        LinkedIn
+                      </Link>
+                    </Button>
+                    <Button asChild size="sm">
+                      <Link href="/BTimokResume24.pdf" target="_blank">
+                        Resume
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </div>
     </section>
   )
 }
-
