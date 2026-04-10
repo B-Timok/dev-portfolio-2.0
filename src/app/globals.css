@@ -77,6 +77,18 @@
   body {
     @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
     font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: default;
+  }
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+  button,
+  [role="button"],
+  a[href],
+  summary {
+    cursor: pointer;
   }
   h1,
   h2,
@@ -134,6 +146,104 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Hero avatar accent: a CSS variable that smoothly cycles through the
+   palette, read by both the blurred ring behind the avatar AND the avatar's
+   own border so they stay in sync. Requires @property for color-typed
+   interpolation so the transitions are smooth instead of step snaps. */
+@property --avatar-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #7dd3fc;
+}
+
+@keyframes hero-ring-cycle {
+  0%   { --avatar-accent: #7dd3fc; }
+  20%  { --avatar-accent: #f9a8d4; }
+  40%  { --avatar-accent: #c4b5fd; }
+  60%  { --avatar-accent: #86efac; }
+  80%  { --avatar-accent: #fcd34d; }
+  100% { --avatar-accent: #7dd3fc; }
+}
+
+@keyframes hero-ring-breathe {
+  0%,
+  100% {
+    opacity: 0.28;
+    filter: blur(14px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(22px);
+  }
+}
+
+/* Button shimmer sweep: a soft light streak that crosses the button on hover.
+   Two variants — `.btn-shimmer` for dark-on-light buttons (uses a white streak
+   via a z-index -1 pseudo so it sits above the transparent-ish background),
+   and `.btn-shimmer-iridescent` for light-on-dark / solid white buttons (uses
+   a layered background-image pastel sweep so it composes above the solid
+   background color without needing a pseudo). */
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 75%
+  );
+  background-size: 220% 100%;
+  background-position: 220% 0;
+  transition: background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn-shimmer:hover::before {
+  background-position: -120% 0;
+}
+
+.btn-shimmer-iridescent {
+  position: relative;
+  --shimmer-streak: rgba(125, 211, 252, 0.4);
+  background-image: linear-gradient(
+    110deg,
+    transparent 25%,
+    var(--shimmer-streak) 50%,
+    transparent 75%
+  );
+  background-size: 220% 100%;
+  background-position: 220% 0;
+  background-repeat: no-repeat;
+  animation: btn-shimmer-cycle 15s step-end infinite;
+  transition: background-position 1s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease-out,
+    color 0.3s ease-out,
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
+.btn-shimmer-iridescent:hover {
+  background-position: -120% 0;
+}
+
+@keyframes btn-shimmer-cycle {
+  0%   { --shimmer-streak: rgba(125, 211, 252, 0.4); }
+  20%  { --shimmer-streak: rgba(249, 168, 212, 0.4); }
+  40%  { --shimmer-streak: rgba(196, 181, 253, 0.4); }
+  60%  { --shimmer-streak: rgba(134, 239, 172, 0.4); }
+  80%  { --shimmer-streak: rgba(252, 211, 77, 0.4); }
+  100% { --shimmer-streak: rgba(125, 211, 252, 0.4); }
+}
+
   .gradient-text { @apply text-foreground; }
 
 .section-pattern {
@@ -172,5 +282,16 @@
   height: 100%;
   background: linear-gradient(-135deg, transparent 50%, hsl(var(--background)));
   z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 

@@ -9,12 +9,12 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "md", asChild, children, ...props }, ref) => {
-    const base = "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:opacity-50 disabled:pointer-events-none"
+    const base = "inline-flex items-center justify-center rounded-md font-medium transition-[transform,background-color,border-color,color,box-shadow] duration-300 ease-out hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-1 disabled:opacity-50 disabled:pointer-events-none disabled:hover:translate-y-0"
     const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
-      default: "bg-foreground text-background hover:bg-foreground/90",
-      ghost: "hover:bg-muted",
-      outline: "border border-border bg-background hover:bg-muted",
-      secondary: "bg-muted text-foreground hover:bg-muted/80",
+      default: "btn-shimmer-iridescent bg-foreground text-background hover:bg-foreground/90",
+      ghost: "btn-shimmer hover:bg-muted",
+      outline: "btn-shimmer border border-border bg-background hover:bg-muted",
+      secondary: "btn-shimmer bg-muted text-foreground hover:bg-muted/80",
     }
     const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
       sm: "h-8 px-3 text-sm",
