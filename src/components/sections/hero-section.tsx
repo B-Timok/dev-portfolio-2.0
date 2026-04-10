@@ -32,15 +32,18 @@ export default function HeroSection() {
         >
             <StaggerItem className="shrink-0">
               <div className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48">
-                {/* Conic gradient blur ring */}
+                {/* Conic gradient blur ring — slow spin + breathe for a liminal feel */}
                 <div
                   aria-hidden="true"
-                  className="absolute -inset-2 rounded-full"
+                  className="absolute -inset-3 rounded-full"
                   style={{
                     background:
                       "conic-gradient(from 0deg, #7dd3fc, #f9a8d4, #c4b5fd, #86efac, #fcd34d, #7dd3fc)",
                     filter: "blur(14px)",
                     opacity: 0.35,
+                    animation:
+                      "hero-ring-spin 22s linear infinite, hero-ring-breathe 7s ease-in-out infinite",
+                    willChange: "transform, filter, opacity",
                   }}
                 />
                 <div

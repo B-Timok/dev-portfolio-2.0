@@ -77,6 +77,18 @@
   body {
     @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
     font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: default;
+  }
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+  button,
+  [role="button"],
+  a[href],
+  summary {
+    cursor: pointer;
   }
   h1,
   h2,
@@ -132,6 +144,28 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Hero avatar liminal ring: slow spin + gentle breathe */
+@keyframes hero-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-ring-breathe {
+  0%,
+  100% {
+    opacity: 0.28;
+    filter: blur(14px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(22px);
+  }
 }
 
   .gradient-text { @apply text-foreground; }
