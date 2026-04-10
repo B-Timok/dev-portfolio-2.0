@@ -8,7 +8,7 @@ import { borderClassByIndex } from "@/lib/playful"
 import { ScrollProgress } from "@/components/motion/scroll-progress"
 import { useActiveSection } from "@/components/motion/use-active-section"
 
-const SECTION_IDS = ["projects", "experience", "about", "contact"] as const
+const SECTION_IDS = ["projects", "experience", "about", "contact"]
 const SECTION_ACCENT: Record<string, string> = {
   projects:   "#7dd3fc",
   experience: "#f9a8d4",
@@ -18,7 +18,7 @@ const SECTION_ACCENT: Record<string, string> = {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
-  const active = useActiveSection([...SECTION_IDS])
+  const active = useActiveSection(SECTION_IDS)
 
   return (
     <nav
