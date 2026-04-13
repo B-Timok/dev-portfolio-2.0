@@ -108,9 +108,8 @@ export default function ExperienceSection() {
     <section id="experience" className="py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp>
-          <div className="inline-flex items-baseline gap-3 mb-8">
+          <div className="mb-8">
             <h2 className="text-2xl font-semibold">Experience</h2>
-            <span className="h-0.5 w-10 bg-[#f9a8d4]" />
           </div>
         </FadeUp>
 

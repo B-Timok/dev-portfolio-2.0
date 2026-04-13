@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { AppStoreBadge } from "@/components/ui/app-store-badge"
-import { bgClassByIndex } from "@/lib/playful"
+import { ExternalLink } from "lucide-react"
 import { FadeUp } from "@/components/motion/fade-up"
 import { StaggerGroup } from "@/components/motion/stagger-group"
 import { StaggerItem } from "@/components/motion/stagger-item"
@@ -23,55 +23,78 @@ type Project = {
 
 const websites: Project[] = [
   {
+    title: "Athlos Fitness",
+    description:
+      "Product site for the Athlos fitness app. Feature showcase, user reviews, FAQ, pricing, and App Store download links.",
+    github: "#",
+    demo: "https://athlos-plum.vercel.app/",
+    image: "/athlos-landing.png",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+    accent: "#3ecf8e",
+    highlights: [
+      "Feature breakdowns, about, FAQ, and contact sections",
+      "User reviews, pricing tiers, and App Store integration",
+      "Responsive layout with interactive app mockup previews",
+    ],
+  },
+  {
     title: "KLSLeadership",
     description:
-      "Custom marketing site for a leadership coach. Vite + TypeScript with Resend-powered contact flows and Vercel hosting.",
+      "Client site for a restaurant operations and hospitality consulting firm. Service offerings, about, and Resend-powered contact form.",
     github: "#",
+    demo: "https://www.klsleadership.com/",
     image: "/kls-home.png",
     tech: ["Vite", "TypeScript", "Resend", "Vercel"],
     accent: "#7dd3fc",
     highlights: [
-      "Custom marketing site with fast, minimal UI",
-      "Email workflows powered by Resend API",
-      "SEO, metadata, and domain setup on Namecheap",
+      "Service breakdowns, about, and contact sections",
+      "Email contact flow powered by Resend API",
+      "SEO, metadata, and custom domain on Namecheap",
     ],
   },
   {
-    title: "slsmedic.com",
+    title: "The Sales Medic",
     description:
-      "Client site in progress. Copy and thumbnail landing soon.",
+      "Client site for a sales training and consulting business. Hero, about, services, and contact pages with animated transitions.",
     github: "#",
-    tech: ["Coming soon"],
-    accent: "#fcd34d",
+    demo: "https://www.slsmedic.com/",
+    image: "/slsmedic.png",
+    tech: ["React", "TypeScript", "Vite", "Tailwind"],
+    accent: "#3b82f6",
+    highlights: [
+      "About, services, and contact pages with client-side routing",
+      "Contact form with React Hook Form and Zod validation",
+      "Scroll-triggered animations with Framer Motion",
+    ],
   },
 ]
 
 const otherProjects: Project[] = [
+  {
+    title: "NBA Tracker",
+    description:
+      "Full-stack NBA tracker with scores, standings, stats, and playoff brackets (SvelteKit + FastAPI).",
+    github: "https://github.com/B-Timok/nba-tracker",
+    image: "/nba-tracker.png",
+    tech: ["SvelteKit", "FastAPI", "Python", "Textual"],
+    accent: "#f97316",
+    highlights: [
+      "Live scores, box scores, play-by-play, and standings",
+      "Playoff bracket, player profiles, and team/player stats",
+      "Three interfaces: web app, terminal UI, and CLI",
+    ],
+  },
   {
     title: "Roadwatch",
     description: "Award-winning road safety app (Next.js, MongoDB, Docker).",
     github: "https://github.com/UNLV-CS472-672/2024-S-GROUP1-Roadwatch",
     image: "/roadwatch.png",
     tech: ["Next.js", "MongoDB", "Docker"],
-    accent: "#f9a8d4",
+    accent: "#f97316",
     highlights: [
       "Team project; shipped MVP at UNLV",
       "Map, reports, and community features",
       "Containerized dev with Docker",
-    ],
-  },
-  {
-    title: "NBA Scoreboard",
-    description: "Realtime NBA analysis using public APIs (Python).",
-    github:
-      "https://github.com/B-Timok/SideProjects/tree/main/pyProjects/sportsScores",
-    image: "/nbascores.png",
-    tech: ["Python", "APIs"],
-    accent: "#c4b5fd",
-    highlights: [
-      "Realtime scoreboard and box scores",
-      "Data fetching, parsing, and caching",
-      "Lightweight UI for quick scan",
     ],
   },
 ]
@@ -90,13 +113,13 @@ function ProjectCard({ project }: { project: Project }) {
         e.currentTarget.style.boxShadow = ""
       }}
     >
-      <div className="relative w-full h-36 overflow-hidden">
+      <div className="relative w-full h-96 overflow-hidden">
         {project.image ? (
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         ) : (
@@ -156,17 +179,19 @@ function ProjectCard({ project }: { project: Project }) {
             })}
           </div>
         )}
-        {project.github && project.github !== "#" && (
+        {(project.demo || (project.github && project.github !== "#")) && (
           <div className="pt-2 flex gap-2">
-            <Button asChild size="sm" variant="outline">
-              <Link href={project.github} target="_blank">
-                Code
-              </Link>
-            </Button>
+            {project.github && project.github !== "#" && (
+              <Button asChild size="sm" variant="outline">
+                <Link href={project.github} target="_blank">
+                  Code
+                </Link>
+              </Button>
+            )}
             {project.demo && (
-              <Button asChild size="sm">
+              <Button asChild size="sm" variant="outline">
                 <Link href={project.demo} target="_blank">
-                  Demo
+                  Visit
                 </Link>
               </Button>
             )}
@@ -177,6 +202,81 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
+function WebsiteCard({ project }: { project: Project }) {
+  const { accent } = project
+  const href = project.demo || "#"
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col rounded-lg border border-border bg-card overflow-hidden transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] h-full"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = accent
+        e.currentTarget.style.boxShadow = `0 12px 28px -12px ${accent}`
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = ""
+        e.currentTarget.style.boxShadow = ""
+      }}
+    >
+      <div className="relative w-full h-96 overflow-hidden">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        ) : (
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              background: `linear-gradient(135deg, ${accent}22 0%, ${accent}0a 60%, #050505 100%)`,
+            }}
+          >
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">
+              Coming soon
+            </span>
+          </div>
+        )}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(circle at 70% 30%, ${accent}33, transparent 60%)`,
+          }}
+        />
+      </div>
+      <div className="p-5 space-y-2 flex-1">
+        <h3 className="font-medium">{project.title}</h3>
+        <p className="text-sm text-muted-foreground">{project.description}</p>
+        {project.tech && project.tech.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {project.tech.map((t) => {
+              const tBrand = brandColor(t, TOOL_BRAND)
+              return (
+                <span
+                  key={t}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono text-muted-foreground"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ background: tBrand }}
+                  />
+                  {t}
+                </span>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    </a>
+  )
+}
+
 export default function ProjectsSection() {
   return (
     <section id="projects" className="py-16">
@@ -184,9 +284,8 @@ export default function ProjectsSection() {
       <FadeUp>
         <div id="athlos" className="mb-16 border-y border-border bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="inline-flex items-baseline gap-3 mb-8">
+            <div className="mb-8">
               <h2 className="text-2xl font-semibold">Featured</h2>
-              <span className={"h-0.5 w-10 " + bgClassByIndex(3)} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 items-start">
@@ -302,6 +401,12 @@ export default function ProjectsSection() {
 
                 <div className="flex flex-wrap gap-3 pt-2 items-center">
                   <AppStoreBadge href="https://apps.apple.com/us/app/athlos-fitness/id6744072500" />
+                  <Button asChild size="sm" variant="outline">
+                    <Link href="https://athlos-plum.vercel.app/" target="_blank">
+                      <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                      Website
+                    </Link>
+                  </Button>
                 </div>
               </div>
 
@@ -326,16 +431,15 @@ export default function ProjectsSection() {
       {/* Websites */}
       <div id="websites" className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <FadeUp>
-          <div className="inline-flex items-baseline gap-3 mb-8">
+          <div className="mb-8">
             <h2 className="text-2xl font-semibold">Websites</h2>
-            <span className="h-0.5 w-10 bg-[#7dd3fc]" />
           </div>
         </FadeUp>
         <StaggerGroup>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {websites.map((p) => (
               <StaggerItem key={p.title}>
-                <ProjectCard project={p} />
+                <WebsiteCard project={p} />
               </StaggerItem>
             ))}
           </div>
@@ -346,10 +450,7 @@ export default function ProjectsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp>
           <div className="mb-8">
-            <div className="flex items-baseline gap-3">
-              <h2 className="text-2xl font-semibold">Other Projects</h2>
-              <span className={"h-0.5 w-10 " + bgClassByIndex(3)} />
-            </div>
+            <h2 className="text-2xl font-semibold">Other Projects</h2>
             <p className="mt-3 text-sm text-muted-foreground max-w-prose">
               A selection of recent work. Clean code, minimal interfaces, and strong data models.
             </p>

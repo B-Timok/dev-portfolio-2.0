@@ -43,9 +43,10 @@ export default function AboutSection() {
                 shaving seconds off load times.
               </p>
               <p>
-                Off the keyboard you&apos;ll usually find me in the gym, on a run,
-                or buried in a good book. Also a fan of cooking, basketball,
-                and the occasional poker tournament.
+                Off the keyboard you&apos;ll find me playing basketball, in the
+                gym, collecting and solving speedcubes, or tinkering with
+                mechanical keyboards. I also enjoy video games, reading,
+                guitar, and the occasional poker night.
               </p>
 
               <div>

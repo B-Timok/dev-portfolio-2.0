@@ -156,6 +156,10 @@
   initial-value: #7dd3fc;
 }
 
+:root {
+  animation: hero-ring-cycle 25s ease-in-out infinite;
+}
+
 @keyframes hero-ring-cycle {
   0%   { --avatar-accent: #7dd3fc; }
   20%  { --avatar-accent: #f9a8d4; }
@@ -177,72 +181,6 @@
   }
 }
 
-/* Button shimmer sweep: a soft light streak that crosses the button on hover.
-   Two variants — `.btn-shimmer` for dark-on-light buttons (uses a white streak
-   via a z-index -1 pseudo so it sits above the transparent-ish background),
-   and `.btn-shimmer-iridescent` for light-on-dark / solid white buttons (uses
-   a layered background-image pastel sweep so it composes above the solid
-   background color without needing a pseudo). */
-
-.btn-shimmer {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.btn-shimmer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.18) 50%,
-    transparent 75%
-  );
-  background-size: 220% 100%;
-  background-position: 220% 0;
-  transition: background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.btn-shimmer:hover::before {
-  background-position: -120% 0;
-}
-
-.btn-shimmer-iridescent {
-  position: relative;
-  --shimmer-streak: rgba(125, 211, 252, 0.4);
-  background-image: linear-gradient(
-    110deg,
-    transparent 25%,
-    var(--shimmer-streak) 50%,
-    transparent 75%
-  );
-  background-size: 220% 100%;
-  background-position: 220% 0;
-  background-repeat: no-repeat;
-  animation: btn-shimmer-cycle 15s step-end infinite;
-  transition: background-position 1s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.3s ease-out,
-    color 0.3s ease-out,
-    transform 0.3s ease-out,
-    box-shadow 0.3s ease-out;
-}
-
-.btn-shimmer-iridescent:hover {
-  background-position: -120% 0;
-}
-
-@keyframes btn-shimmer-cycle {
-  0%   { --shimmer-streak: rgba(125, 211, 252, 0.4); }
-  20%  { --shimmer-streak: rgba(249, 168, 212, 0.4); }
-  40%  { --shimmer-streak: rgba(196, 181, 253, 0.4); }
-  60%  { --shimmer-streak: rgba(134, 239, 172, 0.4); }
-  80%  { --shimmer-streak: rgba(252, 211, 77, 0.4); }
-  100% { --shimmer-streak: rgba(125, 211, 252, 0.4); }
-}
 
   .gradient-text { @apply text-foreground; }
 

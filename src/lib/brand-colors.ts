@@ -24,6 +24,9 @@ export const TOOL_BRAND: Record<string, string> = {
   "MongoDB":      "#47a248",
   "Terraform":    "#7b42bc",
   "Python":       "#3776ab",
+  "SvelteKit":    "#ff3e00",
+  "FastAPI":      "#009485",
+  "Textual":      "#3776ab",
 }
 
 export function brandColor(key: string, map: Record<string, string>): string {
