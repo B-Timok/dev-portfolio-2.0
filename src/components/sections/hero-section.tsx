@@ -32,9 +32,6 @@ export default function HeroSection() {
             <StaggerItem className="shrink-0">
               <div
                 className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48"
-                style={{
-                  animation: "hero-ring-cycle 25s ease-in-out infinite",
-                }}
               >
                 {/* Blurred ring behind the avatar — reads the shared accent variable,
                     breathe animation handles the opacity/blur pulse */}

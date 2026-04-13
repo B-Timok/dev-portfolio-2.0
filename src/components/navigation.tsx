@@ -4,8 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { borderClassByIndex } from "@/lib/playful"
-import { ScrollProgress } from "@/components/motion/scroll-progress"
 import { useActiveSection } from "@/components/motion/use-active-section"
 
 const SECTION_IDS = ["projects", "experience", "about", "contact"]
@@ -22,12 +20,9 @@ export default function Navigation() {
 
   return (
     <nav
-      className={
-        "fixed top-0 w-full z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 " +
-        borderClassByIndex(2)
-      }
+      className="fixed top-0 w-full z-50 border-b bg-background backdrop-blur supports-[backdrop-filter]:bg-background/95"
+      style={{ borderBottomColor: "var(--avatar-accent)" }}
     >
-      <ScrollProgress />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           <div className="flex items-center gap-3">
@@ -35,10 +30,8 @@ export default function Navigation() {
               Brandon Timok
             </Link>
             <span
-              className={
-                "hidden sm:inline-block text-[10px] leading-4 px-2 py-0.5 rounded border " +
-                borderClassByIndex(0)
-              }
+              className="hidden sm:inline-block text-[10px] leading-4 px-2 py-0.5 rounded border"
+              style={{ borderColor: "var(--avatar-accent)" }}
             >
               B.S. Computer Science
             </span>
@@ -86,33 +79,41 @@ export default function Navigation() {
         </div>
       </div>
 
-      {open && (
-        <div className="md:hidden border-t border-border">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex flex-col gap-3">
-              {SECTION_IDS.map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item}`}
-                  className="text-sm"
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="capitalize">{item}</span>
-                </Link>
-              ))}
-              <div className="h-px w-full bg-border" />
+      <div
+        className="md:hidden grid transition-[grid-template-rows] duration-300 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t container mx-auto px-4 py-3" style={{ borderColor: "var(--avatar-accent)" }}>
+            <div className="flex flex-col gap-1">
+              {SECTION_IDS.map((item) => {
+                const isActive = active === item
+                return (
+                  <Link
+                    key={item}
+                    href={`#${item}`}
+                    className="text-sm py-2 px-3 rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    style={isActive ? { color: SECTION_ACCENT[item] } : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="capitalize">{item}</span>
+                  </Link>
+                )
+              })}
+              <div className="h-px w-full bg-border my-1" />
               <Link
                 href="/Resume25.pdf"
                 target="_blank"
-                className="text-sm"
+                className="flex items-center gap-2 text-sm py-2 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 onClick={() => setOpen(false)}
               >
+                <FileText className="h-3.5 w-3.5" />
                 Resume
               </Link>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   )
 }
