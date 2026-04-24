@@ -1,22 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import Link from "next/link"
 import { Menu, X, FileText } from "lucide-react"
+import { useReducedMotion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useActiveSection } from "@/components/motion/use-active-section"
+import { accentHexByIndex } from "@/lib/playful"
 
 const SECTION_IDS = ["projects", "experience", "about", "contact"]
-const SECTION_ACCENT: Record<string, string> = {
-  projects:   "#7dd3fc",
-  experience: "#f9a8d4",
-  about:      "#c4b5fd",
-  contact:    "#86efac",
-}
+const sectionAccent = (id: string): string =>
+  accentHexByIndex(SECTION_IDS.indexOf(id))
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
   const active = useActiveSection(SECTION_IDS)
+  const prefersReducedMotion = useReducedMotion()
+
+  const scrollToTop = useCallback(() => {
+    setOpen(false)
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" })
+  }, [prefersReducedMotion])
 
   return (
     <nav
@@ -26,9 +30,14 @@ export default function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           <div className="flex items-center gap-3">
-            <Link href="/" className="text-sm font-medium">
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+              className="text-sm font-medium transition-colors hover:text-[var(--avatar-accent)]"
+            >
               Brandon Timok
-            </Link>
+            </button>
             <span
               className="hidden sm:inline-block text-[10px] leading-4 px-2 py-0.5 rounded border"
               style={{ borderColor: "var(--avatar-accent)" }}
@@ -45,14 +54,14 @@ export default function Navigation() {
                   key={item}
                   href={`#${item}`}
                   className="relative text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  style={isActive ? { color: SECTION_ACCENT[item] } : undefined}
+                  style={isActive ? { color: sectionAccent(item) } : undefined}
                 >
                   <span className="capitalize">{item}</span>
                   {isActive && (
                     <span
                       aria-hidden="true"
                       className="absolute -bottom-1 left-0 right-0 h-[1.5px]"
-                      style={{ background: SECTION_ACCENT[item] }}
+                      style={{ background: sectionAccent(item) }}
                     />
                   )}
                 </Link>
@@ -93,7 +102,7 @@ export default function Navigation() {
                     key={item}
                     href={`#${item}`}
                     className="text-sm py-2 px-3 rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
-                    style={isActive ? { color: SECTION_ACCENT[item] } : undefined}
+                    style={isActive ? { color: sectionAccent(item) } : undefined}
                     onClick={() => setOpen(false)}
                   >
                     <span className="capitalize">{item}</span>
