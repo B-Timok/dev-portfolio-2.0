@@ -30,7 +30,7 @@ export default function AboutSection() {
           <FadeUp>
             <div className="max-w-3xl space-y-4 text-muted-foreground">
               <p>
-                I&apos;m Brandon — a full‑stack dev based in Henderson, NV. I like
+                I&apos;m Brandon, a full‑stack dev based in Henderson, NV. I like
                 building things that feel fast and friendly. Currently I&apos;m
                 leading frontend development on a telematics platform at ANA
                 Corp while growing Athlos, a fitness app with paying

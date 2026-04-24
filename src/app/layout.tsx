@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: "/og_image.png",
         width: 1200,
         height: 630,
-        alt: "Brandon Timok — Full-Stack Developer",
+        alt: "Brandon Timok, Full-Stack Developer",
       },
     ],
   },

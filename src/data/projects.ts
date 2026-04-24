@@ -22,11 +22,14 @@ export type Project = {
   links: ProjectLink[]
   visual: ProjectVisual
   accentIndex: number
+  /** Optional full override for the slide's accent color (hex).
+   *  When set, takes precedence over accentIndex lookups from the palette. */
+  accentHex?: string
   /** Optional SVG path rendered as a brand mark next to the title.
    *  The SVG is applied as a mask over the slide's accent color. */
   brandMark?: string
   /** Optional override color for the brand mark (hex). Defaults to the
-   *  slide's accentHex if omitted. */
+   *  slide's accent color if omitted. */
   brandMarkColor?: string
 }
 
@@ -37,7 +40,7 @@ export const projects: Project[] = [
     meta: "2025 · Solo dev · Live on the App Store",
     pitch: "A full-stack mobile app for personalized training, built end-to-end.",
     writeup:
-      "Athlos delivers workouts that evolve with each user, a social feed for sharing progress, advanced analytics, and daily and weekly challenges — all synced securely across devices. I built and shipped the whole stack myself: React Native UI with native modules in Swift and Objective-C, a Supabase backend (Auth, Postgres, Storage, RLS, Edge Functions), and subscriptions via RevenueCat and Apple IAP. Launched through TestFlight (30+ beta testers) and now live on the App Store.",
+      "Athlos delivers workouts that evolve with each user, a social feed for sharing progress, advanced analytics, and daily and weekly challenges, all synced securely across devices. I built and shipped the whole stack myself: React Native UI with native modules in Swift and Objective-C, a Supabase backend (Auth, Postgres, Storage, RLS, Edge Functions), and subscriptions via RevenueCat and Apple IAP. Launched through TestFlight (30+ beta testers) and now live on the App Store.",
     stack: [
       "React Native",
       "TypeScript",
@@ -69,13 +72,13 @@ export const projects: Project[] = [
         { src: "/stats_mockup.png", alt: "Athlos stats screen" },
       ],
     },
-    accentIndex: 3, // green (#86efac) — matches Athlos brand
+    accentIndex: 3, // green (#86efac), matches Athlos brand
     brandMark: "/athlos-avatar-v2.svg",
-    brandMarkColor: "#3ecf8e",
+    brandMarkColor: "#21D07A",
   },
   {
     slug: "athlos-site",
-    title: "Athlos Fitness — Website",
+    title: "Athlos Website",
     meta: "2025 · Solo dev · Live",
     pitch: "The product site that sells the Athlos app.",
     writeup:
@@ -91,7 +94,7 @@ export const projects: Project[] = [
     visual: { kind: "image", src: "/athlos-landing.png", alt: "Athlos Fitness landing page" },
     accentIndex: 3,
     brandMark: "/athlos-avatar-v2.svg",
-    brandMarkColor: "#3ecf8e",
+    brandMarkColor: "#21D07A",
   },
   {
     slug: "kls",
@@ -128,6 +131,7 @@ export const projects: Project[] = [
     ],
     visual: { kind: "image", src: "/slsmedic.png", alt: "The Sales Medic homepage" },
     accentIndex: 1,
+    accentHex: "#C12F37",
   },
   {
     slug: "nba-tracker",
@@ -146,6 +150,7 @@ export const projects: Project[] = [
     ],
     visual: { kind: "image", src: "/nba-tracker.png", alt: "NBA Tracker web app" },
     accentIndex: 4,
+    accentHex: "#F27A26",
   },
   {
     slug: "roadwatch",
@@ -164,5 +169,6 @@ export const projects: Project[] = [
     ],
     visual: { kind: "image", src: "/roadwatch.png", alt: "Roadwatch app" },
     accentIndex: 2,
+    accentHex: "#F3691B",
   },
 ]

@@ -8,7 +8,7 @@ type ProjectVisualProps = {
 
 export function ProjectVisual({ visual, accentHex }: ProjectVisualProps) {
   if (visual.kind === "mockups") {
-    return <MockupsVisual visual={visual} accentHex={accentHex} />
+    return <MockupsVisual visual={visual} />
   }
   return <ImageVisual src={visual.src} alt={visual.alt} accentHex={accentHex} />
 }
@@ -49,31 +49,23 @@ function ImageVisual({
 
 function MockupsVisual({
   visual,
-  accentHex,
 }: {
   visual: Extract<ProjectVisualType, { kind: "mockups" }>
-  accentHex: string
 }) {
   return (
     <>
-      {/* Desktop: 3-phone staggered arrangement */}
-      <div
-        className="relative hidden md:block h-[480px] w-full max-w-[520px] mx-auto"
-        style={{ ["--mockup-accent" as string]: accentHex }}
-      >
-        <div
-          className="absolute left-4 top-20 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
-        >
+      {/* Desktop: 3-phone staggered arrangement. Center at top-[30px] to give
+          hover headroom (lift + scale combined push ~25px above the phone's
+          resting top). Side phones at top-[90px] so bases align (30+420 =
+          90+360 = 450). */}
+      <div className="relative hidden md:block h-[480px] w-full max-w-[520px] mx-auto">
+        <div className="absolute left-4 top-[90px] w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] transition-[transform,translate,scale,rotate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 will-change-transform">
           <Image src={visual.secondary[0].src} alt={visual.secondary[0].alt} fill className="object-contain" />
         </div>
-        <div
-          className="absolute right-4 top-20 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
-        >
+        <div className="absolute right-4 top-[90px] w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] transition-[transform,translate,scale,rotate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 will-change-transform">
           <Image src={visual.secondary[1].src} alt={visual.secondary[1].alt} fill className="object-contain" />
         </div>
-        <div
-          className="absolute left-1/2 -translate-x-1/2 top-0 z-10 w-[210px] h-[420px] rounded-[2rem] bg-[#111] overflow-hidden shadow-[0_24px_60px_-20px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:z-20 hover:shadow-[0_28px_70px_-14px_var(--mockup-accent)] will-change-transform"
-        >
+        <div className="absolute left-1/2 -translate-x-1/2 top-[30px] z-10 w-[210px] h-[420px] rounded-[2rem] bg-[#111] overflow-hidden transition-[transform,translate,scale,rotate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:z-20 will-change-transform">
           <div aria-hidden="true" className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border z-10" />
           <Image src={visual.featured.src} alt={visual.featured.alt} fill className="object-contain" />
         </div>
@@ -81,10 +73,7 @@ function MockupsVisual({
 
       {/* Mobile: featured phone + horizontal snap strip below */}
       <div className="md:hidden">
-        <div
-          className="relative mx-auto w-[220px] h-[440px] rounded-[2rem] bg-[#111] overflow-hidden"
-          style={{ boxShadow: `0 24px 60px -20px ${accentHex}aa` }}
-        >
+        <div className="relative mx-auto w-[220px] h-[440px] rounded-[2rem] bg-[#111] overflow-hidden">
           <div aria-hidden="true" className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border z-10" />
           <Image src={visual.featured.src} alt={visual.featured.alt} fill className="object-contain" />
         </div>
@@ -93,7 +82,6 @@ function MockupsVisual({
             <div
               key={m.src}
               className="relative shrink-0 w-[140px] h-[280px] rounded-[1.5rem] bg-[#111] overflow-hidden snap-center"
-              style={{ boxShadow: `0 16px 40px -14px ${accentHex}66` }}
             >
               <Image src={m.src} alt={m.alt} fill className="object-contain" />
             </div>

@@ -12,7 +12,7 @@ type ProjectSlideProps = {
 }
 
 export function ProjectSlide({ project, index, total }: ProjectSlideProps) {
-  const accentHex = accentHexByIndex(project.accentIndex)
+  const accentHex = project.accentHex ?? accentHexByIndex(project.accentIndex)
 
   const brandMarkColor = project.brandMarkColor ?? accentHex
 
@@ -23,7 +23,7 @@ export function ProjectSlide({ project, index, total }: ProjectSlideProps) {
       aria-label={`${index + 1} of ${total}: ${project.title}`}
       className="shrink-0 grow-0 basis-full min-w-0"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:min-h-[520px] flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24 md:min-h-[520px] flex items-center">
         <div className="w-full grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-10 md:gap-12 items-center">
           <div className="order-1 md:order-1 flex items-center justify-center md:min-h-[480px]">
             <ProjectVisual visual={project.visual} accentHex={accentHex} />
@@ -39,7 +39,7 @@ export function ProjectSlide({ project, index, total }: ProjectSlideProps) {
                   <span
                     role="img"
                     aria-label={`${project.title} logo`}
-                    className="shrink-0 w-10 h-10 md:w-11 md:h-11"
+                    className="shrink-0 w-14 h-14 md:w-16 md:h-16"
                     style={{
                       backgroundColor: brandMarkColor,
                       maskImage: `url(${project.brandMark})`,

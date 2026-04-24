@@ -31,7 +31,7 @@ export default function HeroSection() {
               <div
                 className="relative w-28 h-28 md:w-36 md:h-36 lg:w-48 lg:h-48"
               >
-                {/* Blurred ring behind the avatar — reads the shared accent variable,
+                {/* Blurred ring behind the avatar; reads the shared accent variable,
                     breathe animation handles the opacity/blur pulse */}
                 <div
                   aria-hidden="true"
@@ -77,7 +77,7 @@ export default function HeroSection() {
               </StaggerItem>
               <StaggerItem>
                 <p className="text-muted-foreground mb-6 max-w-prose">
-                  I build fast, minimal interfaces backed by reliable APIs — currently solo‑shipping Athlos and freelancing on web projects.
+                  I build fast, minimal interfaces backed by reliable APIs. Currently solo‑shipping Athlos and freelancing on web projects.
                 </p>
               </StaggerItem>
               <StaggerItem>

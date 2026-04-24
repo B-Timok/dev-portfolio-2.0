@@ -68,15 +68,17 @@ export function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
   )
 
   const total = projects.length
-  const selectedAccent = accentHexByIndex(projects[selected]?.accentIndex ?? 0)
+  const selectedProject = projects[selected]
+  const selectedAccent =
+    selectedProject?.accentHex ?? accentHexByIndex(selectedProject?.accentIndex ?? 0)
 
   return (
     <div className="relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-4 flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold">Projects</h2>
-          <p className="mt-2 text-sm text-muted-foreground max-w-prose">
-            Six projects shipped end-to-end — swipe or use the arrows to move through them.
+          <p className="mt-2 text-sm text-muted-foreground">
+            Six projects shipped end-to-end. Swipe or use the arrows to move through them.
           </p>
         </div>
         <div className="font-mono text-xs tabular-nums text-muted-foreground shrink-0">
@@ -103,26 +105,26 @@ export function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
           </div>
         </div>
 
-        {/* Desktop arrows — anchored inside the section container so they
+        {/* Desktop arrows, anchored inside the section container so they
             hug the slide content instead of clinging to the viewport edges. */}
         <div className="hidden md:block pointer-events-none absolute inset-0">
-          <div className="container mx-auto h-full relative px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto h-full relative">
             <ArrowButton
               direction="prev"
               onClick={scrollPrev}
               disabled={!canPrev}
-              className="pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2"
+              className="pointer-events-auto absolute left-2 lg:left-3 top-1/2 -translate-y-1/2"
             />
             <ArrowButton
               direction="next"
               onClick={scrollNext}
               disabled={!canNext}
-              className="pointer-events-auto absolute right-0 top-1/2 -translate-y-1/2"
+              className="pointer-events-auto absolute right-2 lg:right-3 top-1/2 -translate-y-1/2"
             />
           </div>
         </div>
 
-        {/* Mobile swipe hint — fades after first interaction */}
+        {/* Mobile swipe hint, fades after first interaction */}
         {!hasInteracted && !prefersReducedMotion && (
           <div
             aria-hidden="true"
@@ -138,7 +140,7 @@ export function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
       <div className="mt-8 flex justify-center gap-2">
         {projects.map((project, i) => {
           const isActive = i === selected
-          const dotAccent = accentHexByIndex(project.accentIndex)
+          const dotAccent = project.accentHex ?? accentHexByIndex(project.accentIndex)
           return (
             <button
               key={project.slug}
