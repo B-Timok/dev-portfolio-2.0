@@ -22,6 +22,12 @@ export type Project = {
   links: ProjectLink[]
   visual: ProjectVisual
   accentIndex: number
+  /** Optional SVG path rendered as a brand mark next to the title.
+   *  The SVG is applied as a mask over the slide's accent color. */
+  brandMark?: string
+  /** Optional override color for the brand mark (hex). Defaults to the
+   *  slide's accentHex if omitted. */
+  brandMarkColor?: string
 }
 
 export const projects: Project[] = [
@@ -64,6 +70,8 @@ export const projects: Project[] = [
       ],
     },
     accentIndex: 3, // green (#86efac) — matches Athlos brand
+    brandMark: "/athlos-avatar-v2.svg",
+    brandMarkColor: "#3ecf8e",
   },
   {
     slug: "athlos-site",
@@ -82,6 +90,8 @@ export const projects: Project[] = [
     ],
     visual: { kind: "image", src: "/athlos-landing.png", alt: "Athlos Fitness landing page" },
     accentIndex: 3,
+    brandMark: "/athlos-avatar-v2.svg",
+    brandMarkColor: "#3ecf8e",
   },
   {
     slug: "kls",

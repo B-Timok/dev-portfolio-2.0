@@ -24,7 +24,7 @@ function ImageVisual({
 }) {
   return (
     <div
-      className="relative w-full aspect-[16/10] md:aspect-[16/10] rounded-xl border border-border bg-secondary/40 overflow-hidden transition-shadow duration-500 ease-out p-3 md:p-4"
+      className="relative w-full aspect-[16/10] md:aspect-auto md:h-[480px] rounded-xl border border-border bg-secondary/40 overflow-hidden transition-shadow duration-500 ease-out p-3 md:p-4"
       style={{ boxShadow: `0 30px 60px -30px ${accentHex}66` }}
     >
       <div className="relative w-full h-full">
@@ -62,12 +62,12 @@ function MockupsVisual({
         style={{ ["--mockup-accent" as string]: accentHex }}
       >
         <div
-          className="absolute left-4 top-16 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
+          className="absolute left-4 top-20 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
         >
           <Image src={visual.secondary[0].src} alt={visual.secondary[0].alt} fill className="object-contain" />
         </div>
         <div
-          className="absolute right-4 bottom-8 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
+          className="absolute right-4 top-20 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
         >
           <Image src={visual.secondary[1].src} alt={visual.secondary[1].alt} fill className="object-contain" />
         </div>
