@@ -72,7 +72,7 @@ export function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
 
   return (
     <div className="relative">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 mb-4 flex items-end justify-between gap-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-4 flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold">Projects</h2>
           <p className="mt-2 text-sm text-muted-foreground max-w-prose">
@@ -103,19 +103,24 @@ export function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
           </div>
         </div>
 
-        {/* Desktop arrows */}
-        <ArrowButton
-          direction="prev"
-          onClick={scrollPrev}
-          disabled={!canPrev}
-          className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10"
-        />
-        <ArrowButton
-          direction="next"
-          onClick={scrollNext}
-          disabled={!canNext}
-          className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10"
-        />
+        {/* Desktop arrows — anchored inside the section container so they
+            hug the slide content instead of clinging to the viewport edges. */}
+        <div className="hidden md:block pointer-events-none absolute inset-0">
+          <div className="container mx-auto h-full relative px-4 sm:px-6 lg:px-8">
+            <ArrowButton
+              direction="prev"
+              onClick={scrollPrev}
+              disabled={!canPrev}
+              className="pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2"
+            />
+            <ArrowButton
+              direction="next"
+              onClick={scrollNext}
+              disabled={!canNext}
+              className="pointer-events-auto absolute right-0 top-1/2 -translate-y-1/2"
+            />
+          </div>
+        </div>
 
         {/* Mobile swipe hint — fades after first interaction */}
         {!hasInteracted && !prefersReducedMotion && (
@@ -174,14 +179,16 @@ function ArrowButton({
       disabled={disabled}
       aria-label={label}
       className={
-        "h-11 w-11 rounded-full border border-border bg-background/80 backdrop-blur items-center justify-center " +
-        "transition-[opacity,border-color,background-color,color] duration-200 " +
-        "disabled:opacity-30 disabled:cursor-not-allowed " +
-        "enabled:hover:border-[var(--carousel-ring)] enabled:hover:text-[var(--carousel-ring)] " +
+        "group h-12 w-12 rounded-full border border-white/10 bg-card/90 backdrop-blur-md " +
+        "flex items-center justify-center text-foreground/80 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] " +
+        "transition-[transform,border-color,color,box-shadow,opacity] duration-200 " +
+        "disabled:opacity-20 disabled:cursor-not-allowed " +
+        "enabled:hover:border-[var(--carousel-ring)] enabled:hover:text-[var(--carousel-ring)] enabled:hover:scale-105 " +
+        "enabled:hover:shadow-[0_12px_30px_-10px_var(--carousel-ring)] " +
         (className ?? "")
       }
     >
-      <Icon className="h-5 w-5 mx-auto" />
+      <Icon className="h-5 w-5" />
     </button>
   )
 }

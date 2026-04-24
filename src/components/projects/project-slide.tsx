@@ -21,9 +21,9 @@ export function ProjectSlide({ project, index, total }: ProjectSlideProps) {
       role="group"
       aria-roledescription="slide"
       aria-label={`${index + 1} of ${total}: ${project.title}`}
-      className="shrink-0 grow-0 basis-full min-w-0 px-4 sm:px-6 lg:px-8"
+      className="shrink-0 grow-0 basis-full min-w-0"
     >
-      <div className="mx-auto max-w-[1200px] md:min-h-[520px] flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:min-h-[520px] flex items-center">
         <div className="w-full grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-10 md:gap-12 items-center">
           <div className="order-1 md:order-1 flex items-center justify-center md:min-h-[480px]">
             <ProjectVisual visual={project.visual} accentHex={accentHex} />
