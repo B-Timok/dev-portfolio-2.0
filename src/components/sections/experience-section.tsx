@@ -1,5 +1,3 @@
-"use client"
-
 import { COMPANY_BRAND, TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 import { FadeUp } from "@/components/motion/fade-up"
 import { StaggerGroup } from "@/components/motion/stagger-group"
@@ -120,15 +118,8 @@ export default function ExperienceSection() {
                 <StaggerItem key={e.company} className="pb-8 last:pb-0">
 
                   <div
-                    className="group rounded-lg border border-border bg-card p-4 transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px]"
-                    onMouseEnter={(ev) => {
-                      ev.currentTarget.style.borderColor = brand
-                      ev.currentTarget.style.boxShadow = `0 10px 24px -12px ${brand}`
-                    }}
-                    onMouseLeave={(ev) => {
-                      ev.currentTarget.style.borderColor = ""
-                      ev.currentTarget.style.boxShadow = ""
-                    }}
+                    style={{ ["--card-accent" as string]: brand }}
+                    className="group rounded-lg border border-border bg-card p-4 transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:border-[var(--card-accent)] hover:shadow-[0_10px_24px_-12px_var(--card-accent)]"
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <div>

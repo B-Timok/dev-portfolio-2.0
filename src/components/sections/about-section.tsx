@@ -1,5 +1,3 @@
-"use client"
-
 import { borderClassByIndex, markerClassByIndex } from "@/lib/playful"
 import { TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 import { FadeUp } from "@/components/motion/fade-up"
@@ -62,17 +60,8 @@ export default function AboutSection() {
                     return (
                       <StaggerItem key={tool}>
                         <span
-                          className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-muted-foreground transition-[color,border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[1px]"
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.color = brand
-                            e.currentTarget.style.borderColor = brand
-                            e.currentTarget.style.backgroundColor = `${brand}14`
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.color = ""
-                            e.currentTarget.style.borderColor = ""
-                            e.currentTarget.style.backgroundColor = ""
-                          }}
+                          style={{ ["--tool-accent" as string]: brand }}
+                          className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-muted-foreground transition-[color,border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[1px] hover:text-[var(--tool-accent)] hover:border-[var(--tool-accent)] hover:bg-white/[0.06]"
                         >
                           <span
                             className="h-1.5 w-1.5 rounded-full"
