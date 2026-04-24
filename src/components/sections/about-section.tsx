@@ -59,11 +59,11 @@ const RIGHT_NOW: RightNowRow[] = [
 ]
 
 const HOBBIES: Hobby[] = [
-  { label: "Basketball",     Icon: BasketballIcon, accent: "#F97316", tooltip: "Taking ankles" }, // orange
+  { label: "Basketball",     Icon: BasketballIcon, accent: "#F97316", tooltip: "Taking ankles",                     tooltipPosition: "below" }, // orange
   { label: "Speedcubes",     Icon: CubeIcon,       accent: "#7dd3fc", tooltip: "3x3 PB · 11.87s" }, // blue
-  { label: "Mech keyboards", Icon: Keyboard,       accent: "#c4b5fd", tooltip: "100-125 wpm",                       tooltipPosition: "below" }, // purple
-  { label: "Guitar",         Icon: Guitar,         accent: "#f9a8d4", tooltip: "alternative",                       tooltipPosition: "below" }, // pink
-  { label: "Poker",          Icon: SpadeIcon,      accent: "#86efac", tooltip: "Westgate tournament · 1st place",   tooltipPosition: "below" }, // green
+  { label: "Mech keyboards", Icon: Keyboard,       accent: "#c4b5fd", tooltip: "100-125 wpm" }, // purple
+  { label: "Guitar",         Icon: Guitar,         accent: "#f9a8d4", tooltip: "alternative" }, // pink
+  { label: "Poker",          Icon: SpadeIcon,      accent: "#86efac", tooltip: "Westgate tournament · 1st place" }, // green
 ]
 
 export default function AboutSection() {
@@ -169,23 +169,23 @@ export default function AboutSection() {
                         h.tooltipPosition === "below" ? (
                           <span
                             role="tooltip"
-                            className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded-md border border-white/10 bg-background/95 backdrop-blur text-[10px] font-mono whitespace-nowrap text-foreground opacity-0 -translate-y-1 transition-[opacity,transform] duration-200 ease-out group-hover/hobby:opacity-100 group-hover/hobby:translate-y-0 group-focus-visible/hobby:opacity-100 group-focus-visible/hobby:translate-y-0"
+                            className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded-md border border-white/10 bg-background text-[10px] font-mono whitespace-nowrap text-foreground opacity-0 -translate-y-1 transition-[opacity,transform] duration-200 ease-out group-hover/hobby:opacity-100 group-hover/hobby:translate-y-0 group-focus-visible/hobby:opacity-100 group-focus-visible/hobby:translate-y-0"
                           >
                             {h.tooltip}
                             <span
                               aria-hidden="true"
-                              className="absolute left-1/2 bottom-full -translate-x-1/2 translate-y-[5px] w-2 h-2 rotate-45 bg-background/95 border-l border-t border-white/10"
+                              className="absolute left-1/2 bottom-full -translate-x-1/2 translate-y-[5px] w-2 h-2 rotate-45 bg-background border-l border-t border-white/10"
                             />
                           </span>
                         ) : (
                           <span
                             role="tooltip"
-                            className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md border border-white/10 bg-background/95 backdrop-blur text-[10px] font-mono whitespace-nowrap text-foreground opacity-0 translate-y-1 transition-[opacity,transform] duration-200 ease-out group-hover/hobby:opacity-100 group-hover/hobby:translate-y-0 group-focus-visible/hobby:opacity-100 group-focus-visible/hobby:translate-y-0"
+                            className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md border border-white/10 bg-background text-[10px] font-mono whitespace-nowrap text-foreground opacity-0 translate-y-1 transition-[opacity,transform] duration-200 ease-out group-hover/hobby:opacity-100 group-hover/hobby:translate-y-0 group-focus-visible/hobby:opacity-100 group-focus-visible/hobby:translate-y-0"
                           >
                             {h.tooltip}
                             <span
                               aria-hidden="true"
-                              className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[5px] w-2 h-2 rotate-45 bg-background/95 border-r border-b border-white/10"
+                              className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[5px] w-2 h-2 rotate-45 bg-background border-r border-b border-white/10"
                             />
                           </span>
                         )
