@@ -3,18 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { borderClassByIndex } from "@/lib/playful"
+import { accentHexByIndex, borderClassByIndex } from "@/lib/playful"
 import { TOOL_BRAND, brandColor } from "@/lib/brand-colors"
 import { FadeUp } from "@/components/motion/fade-up"
 
-const FIELD_ACCENT = {
-  name:    "#7dd3fc",
-  email:   "#f9a8d4",
-  subject: "#c4b5fd",
-  message: "#86efac",
-} as const
-
-type FieldKey = keyof typeof FIELD_ACCENT
+const FIELD_ORDER = ["name", "email", "subject", "message"] as const
+type FieldKey = (typeof FIELD_ORDER)[number]
+const fieldAccent = (key: FieldKey): string =>
+  accentHexByIndex(FIELD_ORDER.indexOf(key))
 
 export default function ContactSection() {
   const [sending, setSending] = useState(false)
@@ -59,16 +55,17 @@ export default function ContactSection() {
 
   const fieldStyle = (key: FieldKey): React.CSSProperties => {
     const isFocused = focused === key
+    const hex = fieldAccent(key)
     return {
-      borderColor: isFocused ? FIELD_ACCENT[key] : undefined,
-      boxShadow: isFocused ? `0 0 0 3px ${FIELD_ACCENT[key]}1a` : undefined,
+      borderColor: isFocused ? hex : undefined,
+      boxShadow: isFocused ? `0 0 0 3px ${hex}1a` : undefined,
     }
   }
 
   const labelStyle = (key: FieldKey): React.CSSProperties => {
     const isFocused = focused === key
     return {
-      color: isFocused ? FIELD_ACCENT[key] : undefined,
+      color: isFocused ? fieldAccent(key) : undefined,
     }
   }
 
@@ -219,17 +216,8 @@ export default function ContactSection() {
                       return (
                         <span
                           key={tag}
-                          className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-muted-foreground transition-[color,border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[1px]"
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.color = brand
-                            e.currentTarget.style.borderColor = brand
-                            e.currentTarget.style.backgroundColor = `${brand}14`
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.color = ""
-                            e.currentTarget.style.borderColor = ""
-                            e.currentTarget.style.backgroundColor = ""
-                          }}
+                          style={{ ["--tool-accent" as string]: brand }}
+                          className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-muted-foreground transition-[color,border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[1px] hover:text-[var(--tool-accent)] hover:border-[var(--tool-accent)] hover:bg-white/[0.06]"
                         >
                           <span
                             aria-hidden="true"

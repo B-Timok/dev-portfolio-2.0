@@ -1,3 +1,17 @@
+// Single source of truth for the rotating accent palette.
+// Keep PALETTE and the class arrays below in sync.
+export const PALETTE = [
+  "#7dd3fc",
+  "#f9a8d4",
+  "#c4b5fd",
+  "#86efac",
+  "#fcd34d",
+] as const
+
+export function accentHexByIndex(index: number): string {
+  return PALETTE[index % PALETTE.length]
+}
+
 // Predeclare classes so Tailwind picks them up at build time
 const BORDER_CLASSES = [
   "border-[#7dd3fc]",
