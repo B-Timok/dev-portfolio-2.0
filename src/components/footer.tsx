@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Brandon Timok</p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="mailto:timok@unlv.nevada.edu" className="text-muted-foreground hover:text-foreground">Email</Link>
+            <Link href="mailto:btimok@gmail.com" className="text-muted-foreground hover:text-foreground">Email</Link>
             <Link href="https://github.com/B-Timok" target="_blank" className="text-muted-foreground hover:text-foreground">GitHub</Link>
             <Link href="https://www.linkedin.com/in/brandon-timok-589765253/" target="_blank" className="text-muted-foreground hover:text-foreground">LinkedIn</Link>
           </div>
