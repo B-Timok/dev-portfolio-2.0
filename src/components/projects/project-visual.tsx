@@ -24,16 +24,18 @@ function ImageVisual({
 }) {
   return (
     <div
-      className="relative w-full aspect-[16/10] md:aspect-[4/3] rounded-xl border border-border bg-card overflow-hidden transition-shadow duration-500 ease-out"
+      className="relative w-full aspect-[16/10] md:aspect-[16/10] rounded-xl border border-border bg-secondary/40 overflow-hidden transition-shadow duration-500 ease-out p-3 md:p-4"
       style={{ boxShadow: `0 30px 60px -30px ${accentHex}66` }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover object-top"
-        sizes="(max-width: 768px) 100vw, 60vw"
-      />
+      <div className="relative w-full h-full">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, 60vw"
+        />
+      </div>
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
@@ -55,22 +57,22 @@ function MockupsVisual({
   return (
     <>
       {/* Desktop: 3-phone staggered arrangement */}
-      <div className="relative hidden md:block h-[480px] w-full max-w-[520px] mx-auto">
+      <div
+        className="relative hidden md:block h-[480px] w-full max-w-[520px] mx-auto"
+        style={{ ["--mockup-accent" as string]: accentHex }}
+      >
         <div
-          className="absolute left-4 top-16 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:rotate-[-3deg] hover:z-20 will-change-transform"
-          style={{ boxShadow: `0 20px 50px -18px ${accentHex}88` }}
+          className="absolute left-4 top-16 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[-6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[-3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
         >
           <Image src={visual.secondary[0].src} alt={visual.secondary[0].alt} fill className="object-contain" />
         </div>
         <div
-          className="absolute right-4 bottom-8 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:rotate-[3deg] hover:z-20 will-change-transform"
-          style={{ boxShadow: `0 20px 50px -18px ${accentHex}88` }}
+          className="absolute right-4 bottom-8 w-[180px] h-[360px] rounded-[2rem] bg-[#111] overflow-hidden rotate-[6deg] shadow-[0_20px_50px_-18px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:rotate-[3deg] hover:z-20 hover:shadow-[0_24px_60px_-12px_var(--mockup-accent)] will-change-transform"
         >
           <Image src={visual.secondary[1].src} alt={visual.secondary[1].alt} fill className="object-contain" />
         </div>
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-0 z-10 w-[210px] h-[420px] rounded-[2rem] bg-[#111] overflow-hidden transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:z-20 will-change-transform"
-          style={{ boxShadow: `0 24px 60px -20px ${accentHex}aa` }}
+          className="absolute left-1/2 -translate-x-1/2 top-0 z-10 w-[210px] h-[420px] rounded-[2rem] bg-[#111] overflow-hidden shadow-[0_24px_60px_-20px_var(--mockup-accent)] transition-[transform,translate,scale,rotate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.06] hover:z-20 hover:shadow-[0_28px_70px_-14px_var(--mockup-accent)] will-change-transform"
         >
           <div aria-hidden="true" className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full bg-border z-10" />
           <Image src={visual.featured.src} alt={visual.featured.alt} fill className="object-contain" />
