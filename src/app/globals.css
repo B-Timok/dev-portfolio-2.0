@@ -146,6 +146,23 @@
   animation: float 6s ease-in-out infinite;
 }
 
+@keyframes swipe-hint {
+  0%, 100% { transform: translate(0, -50%); opacity: 0.55; }
+  50%      { transform: translate(-6px, -50%); opacity: 1; }
+}
+
+.animate-swipe-hint {
+  animation: swipe-hint 1.6s ease-in-out infinite;
+}
+
+/* Hide scrollbars on horizontal snap strips (mobile Athlos mockups) */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Hero avatar accent: a CSS variable that smoothly cycles through the
    palette, read by both the blurred ring behind the avatar AND the avatar's
    own border so they stay in sync. Requires @property for color-typed
